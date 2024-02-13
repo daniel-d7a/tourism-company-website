@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.title {
+  @apply my-5 text-4xl font-semibold
+}
+
+.icon {
+  @apply w-1/4 h-auto text-center font-light
+}
+
+.button {
+  @apply inline-flex items-center bg-cyan-700 text-white rounded-md p-2
+}
+
+
+.footer {
+  @apply bg-gray-950 text-white p-8 flex items-center sm:flex-row flex-col
+}
+
+.footerIcon {
+  @apply md:mx-3 mx-2 text-white md:text-xl text-sm
+}
