@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.navItem {
+  @apply mr-5 hover:bg-gray-400 rounded-md p-2
+}
+
 .title {
   @apply my-5 text-4xl font-semibold
 }

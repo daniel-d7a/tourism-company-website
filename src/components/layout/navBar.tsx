@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function Nav() {
@@ -17,7 +18,7 @@ export default function Nav() {
     }, [])
 
     return (
-        <header className={header ? " w-screen text-gray-800 bg-white shadow-lg body-font fixed z-50" : " w-screen py-3 text-white bg-transparent body-font fixed z-50"} >
+        <header className={header ? "w-screen text-black bg-white shadow-md fixed z-50" : " w-screen py-3 text-white bg-transparent fixed z-50"} >
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <a className={header ? "flex title-font font-medium items-center text-gray-800 mb-4 md:mb-0" : "flex title-font font-medium items-center text-white mb-4 md:mb-0"}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-8 h-8">
@@ -27,10 +28,11 @@ export default function Nav() {
 
                     <span className="ml-2 font-bold text-3xl">Travel</span>
                 </a>
+
                 <nav className="md:ml-auto flex flex-wrap items-center text-xl justify-center">
-                    <a href="/" className="mr-5 hover:text-gray-800">Home</a>
-                    <a href="#" className="mr-5 hover:text-gray-800">Travels</a>
-                    <a href="#" className="mr-5 hover:text-gray-800">About</a>
+                    <Link href="/" className="navItem">Home</Link>
+                    <Link href="#" className="navItem">Travels</Link>
+                    <Link href="#" className="navItem">About</Link>
                 </nav>
             </div>
         </header >
