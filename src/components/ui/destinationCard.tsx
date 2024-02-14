@@ -1,8 +1,8 @@
 
 import Image from "next/image";
-import { CardInfo } from "./Interfaces";
+import { DestinationInfo } from "../Interfaces";
 
-export default function TravelCard({ params }: { params: CardInfo }) {
+export default function DestinationCard({ params }: { params: DestinationInfo }) {
     return (
         <div className="shadow rounded-md overflow-hidden text-center">
             <Image src={params.src} alt={params.title} />

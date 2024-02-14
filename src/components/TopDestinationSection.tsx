@@ -1,10 +1,10 @@
-import { CardInfo } from "./Interfaces"
-import TravelCard from "./TravelCard"
+import { DestinationInfo } from "./Interfaces"
 import travelImg from "../assets/travelling.jpg"
+import DestinationCard from "./ui/destinationCard"
 
 export default function TopDestinationSection() {
 
-    let info: CardInfo[] = [
+    let info: DestinationInfo[] = [
         {
             src: travelImg, title: "Lorem, ipsum dolor.", description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus possimus sunt fugit hic harum obcaecati"
         },
@@ -20,7 +20,7 @@ export default function TopDestinationSection() {
             <h3 className="title text-center">Explore Top Destination</h3>
             <div className="grid md:grid-cols-3 gap-5 m-10">
                 {
-                    info.map((item, index) => <TravelCard key={index} params={item} />)
+                    info.map((item, index) => <DestinationCard key={index} params={item} />)
                 }
             </div>
 

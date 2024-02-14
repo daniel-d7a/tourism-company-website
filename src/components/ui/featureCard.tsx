@@ -1,4 +1,4 @@
-import { FeatureInfo } from "./Interfaces";
+import { FeatureInfo } from "../Interfaces";
 
 export default function FeatureCard({ params }: { params: FeatureInfo }) {
 

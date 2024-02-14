@@ -1,4 +1,4 @@
-import FeatureCard from "./FeatureCard"
+import FeatureCard from "./ui/featureCard"
 import { FeatureInfo } from "./Interfaces"
 
 
