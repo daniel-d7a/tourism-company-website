@@ -3,22 +3,22 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Nav() {
-    const [header, setHeader] = useState(false)
+    const [header, setHeader] = useState(true)
 
-    const scrollNav = () => {
-        if (window.scrollY >= 150) {
-            setHeader(true);
-        } else {
-            setHeader(false);
-        }
-    };
+    // const scrollNav = () => {
+    //     if (window.scrollY >= 150) {
+    //         setHeader(true);
+    //     } else {
+    //         setHeader(false);
+    //     }
+    // };
 
-    useEffect(() => {
-        window.addEventListener('scroll', scrollNav);
-        return () => {
-            window.removeEventListener('scroll', scrollNav);
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener('scroll', scrollNav);
+    //     return () => {
+    //         window.removeEventListener('scroll', scrollNav);
+    //     };
+    // }, []);
 
     return (
         <header className={header ? "w-screen text-black bg-white shadow-md fixed z-50" : " w-screen py-3 text-white bg-transparent fixed z-50"} >
