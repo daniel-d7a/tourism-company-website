@@ -34,6 +34,9 @@ export const SideBar = () => {
         >
           reviews
         </ListItem>
+        <ListItem href="/tours" Icon={<Home {...iconProps} />}>
+          Home
+        </ListItem>
       </ul>
     </div>
   );

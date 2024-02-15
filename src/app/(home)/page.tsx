@@ -1,12 +1,9 @@
 import Image from "next/image";
-import Nav from "../components/layout/navBar";
-import homeImg from '../assets/homepage.jpg'
-import WelcomeSection from '../components/WelcomeSection'
-import StrongPointsSection from '@/components/strongpointssection'
+import Nav from "@/components/layout/navBar";
+import homeImg from "@/assets/homepage.jpg";
+import WelcomeSection from "@/components/WelcomeSection";
+import StrongPointsSection from "@/components/strongpointssection";
 import TopDestinationSection from "@/components/TopDestinationSection";
-
-
-
 
 export default function Home() {
   return (

@@ -30,9 +30,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <Nav />
         {children}
-        <Footer />
         <Toaster richColors />
       </body>
     </html>
