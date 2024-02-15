@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/layout/navBar";
-import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
-
+import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   title: "Travel",
