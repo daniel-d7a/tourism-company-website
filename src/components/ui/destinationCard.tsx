@@ -1,6 +1,6 @@
-
 import Image from "next/image";
-import { DestinationInfo } from "../Interfaces";
+import { DestinationInfo } from "../../models/Interfaces";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function DestinationCard({ params }: { params: DestinationInfo }) {
     return (
@@ -8,10 +8,9 @@ export default function DestinationCard({ params }: { params: DestinationInfo })
             <Image src={params.src} alt={params.title} />
             <h5 className="text-xl m-2">{params.title}</h5>
             <p className="m-2">{params.description}</p>
-            <button className="button my-5 mx-auto ">Learn more
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg></button>
+            <button className="button my-5 mx-auto flex items-center justify-center ">Learn more
+                <FaArrowRight className="mx-2" />
+            </button>
         </div>
     )
 }
