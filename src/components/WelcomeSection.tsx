@@ -6,7 +6,7 @@ export default function WelcomeSection() {
     <section className="mt-5 md:p-20 p-10">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 ">
         <div className="p-5">
-          <h2 className="title ">Welcome</h2>
+          <h2 className="title">Welcome</h2>
           <p className="text-xl text-bold">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
             fugiat fuga quas placeat deserunt dolore excepturi provident

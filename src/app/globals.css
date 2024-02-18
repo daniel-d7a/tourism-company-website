@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .navItem {
-  @apply mr-5 hover:bg-gray-400 transition-all hover:text-white rounded-md py-1 px-2;
+  @apply mr-5 hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2 mx-2;
 }
 
 .title {
-  @apply my-5 text-4xl font-semibold;
+  @apply my-5 text-5xl font-semibold font-playfair;
 }
 
 .icon {
@@ -15,7 +15,7 @@
 }
 
 .button {
-  @apply inline-flex items-center bg-cyan-700 text-white rounded-md p-2;
+  @apply inline-flex items-center bg-primary-foreground text-white rounded-md p-2;
 }
 
 .footer {

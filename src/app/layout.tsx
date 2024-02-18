@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { fontSans } from "@/lib/fonts";
+import { fontSans, playfairDisplay } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
+
 export const metadata: Metadata = {
-  title: "Travel",
-  description: "Travel Agency",
+  title: "All Seasons Tours",
+  description: "All Seasons Tours Agency",
+  icons: {
+    icon: [
+      {
+        media: '(prefers-color-scheme: light)',
+        url: '/images/logo.png',
+        href: '/images/logo.png',
+      },
+
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +30,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable, playfairDisplay.variable
         )}
       >
         {children}

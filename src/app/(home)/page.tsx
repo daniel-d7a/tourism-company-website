@@ -9,7 +9,6 @@ export default function Home() {
 
   return (
     <main>
-      <Nav />
       <div className="min-w-full h-screen relative">
         <div className="capitalize flex items-center justify-center w-full h-full bg-black bg-opacity-35 text-white absolute z-10">
           <div className="text-center">
