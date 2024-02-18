@@ -1,6 +1,6 @@
 import tourImg from "@/assets/travelling.jpg";
 import TourCard from "@/components/ui/tourCard";
-import { getTours } from "@/lib/tour/tour.actions"
+import { getTours } from "@/lib/tour/tour.actions";
 import {
   Pagination,
   PaginationContent,
@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/pagination";
 
 export default async function Tours() {
-
   const data = await getTours();
   const toursArray = data.data?.data!;
 
@@ -29,7 +28,7 @@ export default async function Tours() {
       </div>
       <div className="my-10 w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {toursArray.map((tour, index) => (
-          < TourCard key={index} params={tour} img={tourImg} />
+          <TourCard key={index} params={tour} img={tourImg} />
         ))}
       </div>
 

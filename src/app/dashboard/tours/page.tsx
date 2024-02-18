@@ -7,6 +7,8 @@ export default async function ToursPage() {
   const data = await getTours();
   const tableData = data.data?.data!;
 
+  console.log("tabel data => ", tableData);
+
   return (
     <>
       <div className="text-2xl font-semibold pt-4 pb-4 px-4 ml-0.5 bg-white flex  items-center justify-between">

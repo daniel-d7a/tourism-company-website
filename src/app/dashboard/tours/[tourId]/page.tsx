@@ -54,7 +54,7 @@ export default async function SingleTourPage({
         </div>
 
         <Image
-          src={media?.[0]?.original_url}
+          src={media?.[0].original_url}
           alt={name}
           width={300}
           height={300}

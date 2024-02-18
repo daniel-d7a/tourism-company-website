@@ -1,13 +1,13 @@
 "use server";
 import { tourFormData } from "@/app/dashboard/tours/add/form/TourForm.schema";
 import { API_URL } from "@/constants/api";
-import { ApiResponse } from "@/models/ApiResponse";
-import { Tour, TourDetails } from "@/models/Tour";
+import { Tour } from "@/models/Tour";
 import { revalidatePath } from "next/cache";
 import * as http from "../fetch";
+import { PaginationData } from "@/models/PaginatedResponse";
 
 export async function getTours() {
-  return await http.getRequest<Tour[]>(`${API_URL}tours/all`);
+  return await http.getRequest<PaginationData<Tour>>(`${API_URL}tours/all`);
 }
 
 export async function deleteTour(id: number) {
@@ -16,7 +16,6 @@ export async function deleteTour(id: number) {
   if (responseData.success) {
     revalidatePath("/dashboard/tours");
   }
-
   return responseData;
 }
 
@@ -35,14 +34,6 @@ export async function addTour(data: tourFormData) {
     revalidatePath("/dashboard/tours");
   }
 
-  return responseData;
-}
-
-export async function getTourDetails(id: number) {
-  const response = await fetch(`${API_URL}tours/${id}`, {
-    next: { revalidate: 60 },
-  });
-  const responseData: ApiResponse<TourDetails> = await response.json();
   return responseData;
 }
 

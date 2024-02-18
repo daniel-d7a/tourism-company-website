@@ -8,7 +8,10 @@ export type Tour = {
   duration: string;
   includes: string[];
   excludes: string[];
-  media: any;
+  media: TourMedia[];
+  reviews: TourReview[];
+  options: TourOption[];
+  price: number;
 };
 
 export type TourOption = {
@@ -16,17 +19,12 @@ export type TourOption = {
   price: number;
 };
 
+export type TourMedia = {
+  original_url: string;
+};
 
-
-export interface TourDetails {
-  id: number;
-  // src: StaticImageData[];
-  name: string;
-  location: string;
-  description: string;
-  duration: string;
-  includes: string[];
-  excludes: string[];
-  media: [];
-  reviews: [];
-}
+export type TourReview = {
+  title: string;
+  body: string;
+  stars: number;
+};

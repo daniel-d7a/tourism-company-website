@@ -11,18 +11,29 @@ import Image from "next/image";
 import { ImCancelCircle } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
 import { Checkbox } from "@/components/ui/checkbox";
-import { getTourDetails } from "@/lib/tour/tour.actions"
+import { getSingleTour } from "@/lib/tour/tour.actions";
 
-
-export default async function TourPage({ params }: { params: { tourId: string } }) {
-
-  let { tourId } = params
-  const tour = await getTourDetails(Number(tourId))
-  const { name, location, description, duration, includes, excludes, media, reviews } = tour.data!
+export default async function TourPage({
+  params,
+}: {
+  params: { tourId: string };
+}) {
+  let { tourId } = params;
+  const tour = await getSingleTour(Number(tourId));
+  const {
+    name,
+    location,
+    description,
+    duration,
+    includes,
+    excludes,
+    media,
+    reviews,
+  } = tour.data!;
 
   const tourTemplate = {
     options: ["img", "img", "img"],
-    price: "150"
+    price: "150",
   };
 
   return (
@@ -51,9 +62,7 @@ export default async function TourPage({ params }: { params: { tourId: string } 
           </h2>
           <h1 className="text-3xl font-medium">{name}</h1>
           <p className="text-base">{description}</p>
-          <h3 className="text-xl font-bold my-2">
-            Duration : {duration}
-          </h3>
+          <h3 className="text-xl font-bold my-2">Duration : {duration}</h3>
           <h3 className="text-xl font-bold my-2">Include List</h3>
           <ul className="mx-5">
             {includes?.map((item, index) => (
@@ -119,7 +128,8 @@ export default async function TourPage({ params }: { params: { tourId: string } 
                     <Image className="mx-2" src={star} alt="rate" width={15} />
                   </div>
                 </div>
-                <p className="text-xl">{item}</p>
+                <p className="text-xl">{item.title}</p>
+                <p className="">{item.body}</p>
               </div>
             ))}
           </div>
