@@ -5,12 +5,10 @@ export const tourSchema = z.object({
   description: z.string().min(1, "Description cannot be empty"),
   location: z.string().min(1, "Location cannot be empty"),
   duration: z.string().min(1, "Duration cannot be empty"),
-  price: z
-    .number()
-    .min(1, "Price cannot be less than 1")
-    .transform((val) => {
-      return Math.floor(val);
-    }),
+  price: z.coerce
+    .number({ invalid_type_error: "Please enter a valid number" })
+    .int("Price must be an integer")
+    .min(1, "Price cannot be less than 1"),
   /**
    * this feild is set to an array of objects instead of an array of strings
    * because the useFieldArray hook in react-hook-form expects an array of objects

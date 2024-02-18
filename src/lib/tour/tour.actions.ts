@@ -6,8 +6,10 @@ import { revalidatePath } from "next/cache";
 import * as http from "../fetch";
 import { PaginationData } from "@/models/PaginatedResponse";
 
-export async function getTours() {
-  return await http.getRequest<PaginationData<Tour>>(`${API_URL}tours/all`);
+export async function getTours(page: number = 1) {
+  return await http.getRequest<PaginationData<Tour>>(
+    `${API_URL}tours/all?page=${page}`
+  );
 }
 
 export async function deleteTour(id: number) {

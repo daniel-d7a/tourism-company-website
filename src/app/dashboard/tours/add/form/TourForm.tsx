@@ -153,6 +153,24 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="price"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tour Price</FormLabel>
+              <FormControl>
+                <Input
+                  min={1}
+                  type="number"
+                  placeholder="Enter tour price"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         {/* includes */}
         <div className="flex flex-col ">
           <FormLabel className="">Include list</FormLabel>

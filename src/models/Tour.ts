@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export type Tour = {
   id: number;
   name: string;
@@ -27,4 +25,5 @@ export type TourReview = {
   title: string;
   body: string;
   stars: number;
+  tour_id: number;
 };
