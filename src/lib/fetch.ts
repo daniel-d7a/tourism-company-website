@@ -1,9 +1,6 @@
 import { ApiResponse } from "@/models/ApiResponse";
 import { getToken } from "./token";
-export async function getRequest<TResponse>(
-  endpoint: string,
-  options?: RequestInit
-) {
+async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   const response = await fetch(endpoint, {
     headers: {
       accept: "application/json",
@@ -16,7 +13,7 @@ export async function getRequest<TResponse>(
   return responseData;
 }
 
-export async function postRequest<TResponse, TBody = TResponse>(
+async function postRequest<TResponse, TBody = TResponse>(
   endpoint: string,
   data: TBody
 ) {
@@ -34,7 +31,7 @@ export async function postRequest<TResponse, TBody = TResponse>(
   return responseData;
 }
 
-export async function deleteRequest<TResponse>(endpoint: string) {
+async function deleteRequest<TResponse>(endpoint: string) {
   const response = await fetch(endpoint, {
     method: "DELETE",
     headers: {
@@ -47,3 +44,5 @@ export async function deleteRequest<TResponse>(endpoint: string) {
   const responseData: ApiResponse<TResponse> = await response.json();
   return responseData;
 }
+
+export { getRequest, postRequest, deleteRequest };

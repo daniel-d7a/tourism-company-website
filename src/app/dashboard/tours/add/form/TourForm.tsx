@@ -26,8 +26,8 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
     values: tourData
       ? {
           ...tourData,
-          includes: tourData?.includes.map((value) => ({ value })),
-          excludes: tourData?.excludes.map((value) => ({ value })),
+          includes: tourData?.includes?.map((value) => ({ value })),
+          excludes: tourData?.excludes?.map((value) => ({ value })),
         }
       : undefined,
   });
