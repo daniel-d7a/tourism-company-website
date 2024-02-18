@@ -9,17 +9,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Table } from "@tanstack/react-table";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-type IPaginatorProps = {
-  lastPage: number;
-};
-
-export const TourTablePagination = <T,>({ table }: { table: Table<T> }) => {
+export const TablePagination = <T,>({ table }: { table: Table<T> }) => {
   const page = table.getState().pagination.pageIndex;
   const lastPage = table.getPageCount();
-
-  console.log(page, " - ", lastPage);
   const pathname = usePathname();
 
   // last page = 1 => 1

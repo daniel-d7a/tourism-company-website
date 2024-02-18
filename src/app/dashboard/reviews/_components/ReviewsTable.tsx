@@ -1,20 +1,22 @@
 "use client";
-
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { columns } from "./ToursTableColumns";
-import { Tour } from "@/models/Tour";
-import { useRouter, useSearchParams } from "next/navigation";
-import { TablePagination } from "../../../../components/TablePagination";
+import { columns } from "./ReviewTableColumns";
 import { PaginationData } from "@/models/PaginatedResponse";
+import { TourReview } from "@/models/Tour";
+import { useSearchParams } from "next/navigation";
+import { TablePagination } from "@/components/TablePagination";
 import { TableUI } from "@/components/TableUi";
 
-export function ToursTable({ data }: { data: PaginationData<Tour> }) {
+export const ReviewsTable = ({
+  data,
+}: {
+  data: PaginationData<TourReview>;
+}) => {
   const params = useSearchParams();
   const pageIndex = Number(params.get("page")) || 1;
-  const router = useRouter();
 
   const table = useReactTable({
-    data: data.data || [],
+    data: data.data,
     pageCount: data.last_page,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -29,11 +31,8 @@ export function ToursTable({ data }: { data: PaginationData<Tour> }) {
 
   return (
     <>
-      <TableUI
-        table={table}
-        onRowClick={(row) => router.push(`/dashboard/tours/${row.id}`)}
-      />
+      <TableUI table={table} />
       <TablePagination table={table} />
     </>
   );
-}
+};

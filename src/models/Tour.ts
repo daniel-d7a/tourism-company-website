@@ -26,4 +26,5 @@ export type TourReview = {
   body: string;
   stars: number;
   tour_id: number;
+  id: number;
 };

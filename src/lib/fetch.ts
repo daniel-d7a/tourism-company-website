@@ -1,7 +1,8 @@
 import { ApiResponse } from "@/models/ApiResponse";
 import { getToken } from "./token";
+import { API_URL } from "@/constants/api";
 async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
-  const response = await fetch(endpoint, {
+  const response = await fetch(`${API_URL}${endpoint}`, {
     headers: {
       accept: "application/json",
       authorization: `Bearer ${getToken()}`,
@@ -17,7 +18,7 @@ async function postRequest<TResponse, TBody = TResponse>(
   endpoint: string,
   data: TBody
 ) {
-  const response = await fetch(endpoint, {
+  const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +33,7 @@ async function postRequest<TResponse, TBody = TResponse>(
 }
 
 async function deleteRequest<TResponse>(endpoint: string) {
-  const response = await fetch(endpoint, {
+  const response = await fetch(`${API_URL}${endpoint}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

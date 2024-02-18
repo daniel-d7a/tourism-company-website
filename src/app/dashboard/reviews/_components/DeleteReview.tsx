@@ -4,22 +4,23 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { LoadingSpinner } from "@/components/ui/loadingSpinner";
 import { CellContext } from "@tanstack/react-table";
-import { Tour } from "@/models/Tour";
-import { deleteTour } from "@/lib/tour/tour.actions";
+import { TourReview } from "@/models/Tour";
+import { forceDeleteReview } from "@/lib/reviews/reviews.actions";
 
-export function DeleteTourButton({ getValue }: CellContext<Tour, number>) {
+export function DeleteReview({ getValue }: CellContext<TourReview, number>) {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <Button
+      className="mx-auto flex justify-center"
       disabled={isLoading}
       variant={"destructive"}
       onClick={async (e) => {
         e.stopPropagation();
         setIsLoading(true);
-        const res = await deleteTour(Number(getValue()));
+        const res = await forceDeleteReview(Number(getValue()));
 
         if (res.success) {
-          toast.success("Tour deleted successfully");
+          toast.success("review deleted successfully");
         } else {
           toast.error(res.message);
         }
