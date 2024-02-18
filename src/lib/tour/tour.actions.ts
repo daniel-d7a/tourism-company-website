@@ -1,15 +1,18 @@
 "use server";
-
-import { addTourData } from "@/app/dashboard/tours/add/form/addTour.schema";
+import { tourFormData } from "@/app/dashboard/tours/add/form/TourForm.schema";
 import { API_URL } from "@/constants/api";
 import { getToken } from "@/lib/token";
 import { ApiResponse } from "@/models/ApiResponse";
 import { PaginatedResponse } from "@/models/PaginatedResponse";
 import { Tour } from "@/models/Tour";
 import { revalidatePath } from "next/cache";
+import { postRequest } from "../fetch";
 
-export async function getTours(): Promise<PaginatedResponse<Tour[]>> {
+export async function getTours() {
   const response = await fetch(`${API_URL}tours/all`, {
+    headers: {
+      accept: "application/json",
+    },
     next: { revalidate: 60 },
   });
 
@@ -39,6 +42,7 @@ export async function deleteTour(id: number) {
 export async function getSingleTour(id: number) {
   const response = await fetch(`${API_URL}tours/${id}`, {
     headers: {
+      accept: "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
     next: { revalidate: 60 },
@@ -47,7 +51,7 @@ export async function getSingleTour(id: number) {
   return responseData;
 }
 
-export async function addTour(data: addTourData) {
+export async function addTour(data: tourFormData) {
   const response = await fetch(`${API_URL}tours/store`, {
     method: "POST",
     headers: {
@@ -55,7 +59,11 @@ export async function addTour(data: addTourData) {
       accept: "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      ...data,
+      includes: data.includes?.map((i) => i.value),
+      excludes: data.excludes?.map((i) => i.value),
+    }),
   });
   const responseData: ApiResponse<Tour> = await response.json();
 
@@ -63,5 +71,18 @@ export async function addTour(data: addTourData) {
     revalidatePath("/dashboard/tours");
   }
 
+  return responseData;
+}
+
+export async function updateTour(id: number, data: tourFormData) {
+  const responseData = await postRequest<Tour>(`${API_URL}tours/update/${id}`, {
+    ...data,
+    includes: data.includes?.map((i) => i.value) || [],
+    excludes: data.excludes?.map((i) => i.value) || [],
+  } as Tour);
+
+  if (responseData.success) {
+    revalidatePath("/dashboard/tours");
+  }
   return responseData;
 }

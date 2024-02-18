@@ -6,4 +6,10 @@ export type Tour = {
   duration: string;
   includes: string[];
   excludes: string[];
+  media: any;
+};
+
+export type TourOption = {
+  name: string;
+  price: number;
 };

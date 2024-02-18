@@ -17,7 +17,6 @@ interface param {
   tourId: string;
 }
 export default function TourPage({ params }: { params: param }) {
-  // console.log(params.tourId)
   const tourTemplate: TourDetails = {
     id: 1,
     src: [img, img, img, img],
@@ -25,16 +24,16 @@ export default function TourPage({ params }: { params: param }) {
     location: "Tour Location",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, assumenda. Veniam amet illo tenetur nisi porro maiores! Iste minus ex aspernatur. Optio fugiat molestias quas amet eos eligendi ad atque, omnis magnam pariatur voluptatem vero similique saepe enim officiis qui reiciendis ipsam necessitatibus neque placeat",
-    includeList: ["Include 1", "Include 2"],
-    excludeList: ["Exclude 1", "Exclude 2"],
+    includeList: ["1 Meal", "museum ticket "],
+    excludeList: ["souvenirs ", "pyramids ticket"],
     overallRate: "5",
     reviews: [
       { rate: "5", comment: "Excellent tour!" },
-      { rate: "3", comment: "Excellent tour!" },
+      { rate: "4.5", comment: "Excellent tour!" },
     ],
     duration: "2 hours",
     price: "$100",
-    options: ["Option 1", "Option 2"],
+    options: ["premium transport", "tour guide"],
   };
 
   return (

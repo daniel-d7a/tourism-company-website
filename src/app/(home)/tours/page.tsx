@@ -22,7 +22,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2.5",
+      rate: "4.5",
     },
     {
       id: 1,
@@ -32,7 +32,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2",
+      rate: "4",
     },
     {
       id: 1,
@@ -42,7 +42,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2",
+      rate: "4.2",
     },
     {
       id: 1,
@@ -52,7 +52,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2.5",
+      rate: "4.5",
     },
     {
       id: 1,
@@ -62,7 +62,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2.6",
+      rate: "4.6",
     },
     {
       id: 1,
@@ -72,7 +72,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2",
+      rate: "4.1",
     },
     {
       id: 1,
@@ -82,7 +82,7 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2",
+      rate: "5",
     },
     {
       id: 1,
@@ -92,12 +92,12 @@ export default function Tours() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
       price: "100",
-      rate: "2",
+      rate: "3.7",
     },
   ];
 
   return (
-    <section className="min-h-screen w-full md:pt-24 pt-32 md:px-24 px-12 flex  items-center flex-col">
+    <section className="min-h-screen w-full md:pt-32 pt-32 md:px-24 px-12 flex  items-center flex-col">
       <div className="w-1/2">
         <input
           type="text"

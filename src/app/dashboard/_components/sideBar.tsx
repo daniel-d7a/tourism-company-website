@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 import { ListItem } from "./atoms/ListItem";
 import { Home, Banknote, Plane, MessageSquareMore } from "lucide-react";
 

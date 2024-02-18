@@ -3,28 +3,27 @@
 @tailwind utilities;
 
 .navItem {
-  @apply mr-5 hover:bg-gray-400 hover:text-white rounded-md py-1 px-2
+  @apply mr-5 hover:bg-gray-400 transition-all hover:text-white rounded-md py-1 px-2;
 }
 
 .title {
-  @apply my-5 text-4xl font-semibold
+  @apply my-5 text-4xl font-semibold;
 }
 
 .icon {
-  @apply w-1/4 h-auto text-center font-light
+  @apply w-1/4 h-auto text-center font-light;
 }
 
 .button {
-  @apply inline-flex items-center bg-cyan-700 text-white rounded-md p-2
+  @apply inline-flex items-center bg-cyan-700 text-white rounded-md p-2;
 }
 
-
 .footer {
-  @apply bg-gray-950 text-white p-8 flex items-center sm:flex-row flex-col
+  @apply bg-gray-100 text-white p-8 flex items-center sm:flex-row flex-col;
 }
 
 .footerIcon {
-  @apply md:mx-3 mx-2 text-white md:text-xl text-sm
+  @apply md:mx-3 mx-2 text-black md:text-xl text-sm;
 }
 
 @layer base {
@@ -38,10 +37,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 202, 99%, 70%;
+    --primary-foreground: 206, 98%, 50%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 25, 100%, 54%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;

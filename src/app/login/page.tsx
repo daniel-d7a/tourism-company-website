@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 import { LoginForm } from "./Form/LoginForm";
 export default function LoginPage() {
   return (
