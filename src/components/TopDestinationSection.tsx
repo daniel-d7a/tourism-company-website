@@ -1,4 +1,4 @@
-import { DestinationInfo } from "./Interfaces"
+import { DestinationInfo } from "../models/Interfaces"
 import travelImg from "../assets/travelling.jpg"
 import DestinationCard from "./ui/destinationCard"
 

@@ -4,7 +4,7 @@ import { API_URL } from "@/constants/api";
 import { getToken } from "@/lib/token";
 import { ApiResponse } from "@/models/ApiResponse";
 import { PaginatedResponse } from "@/models/PaginatedResponse";
-import { Tour } from "@/models/Tour";
+import { Tour, TourDetails } from "@/models/Tour";
 import { revalidatePath } from "next/cache";
 import { postRequest } from "../fetch";
 
@@ -71,6 +71,14 @@ export async function addTour(data: tourFormData) {
     revalidatePath("/dashboard/tours");
   }
 
+  return responseData;
+}
+
+export async function getTourDetails(id: number) {
+  const response = await fetch(`${API_URL}tours/${id}`, {
+    next: { revalidate: 60 },
+  });
+  const responseData: ApiResponse<TourDetails> = await response.json();
   return responseData;
 }
 

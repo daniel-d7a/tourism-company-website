@@ -1,7 +1,6 @@
-import { TourInfo } from "@/components/Interfaces";
 import tourImg from "@/assets/travelling.jpg";
 import TourCard from "@/components/ui/tourCard";
-
+import { getTours } from "@/lib/tour/tour.actions"
 import {
   Pagination,
   PaginationContent,
@@ -12,89 +11,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default function Tours() {
-  const toursArray: TourInfo[] = [
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4.5",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4.2",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4.5",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4.6",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "4.1",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "5",
-    },
-    {
-      id: 1,
-      src: tourImg,
-      destination: "egypt",
-      title: "tour in Egypt",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem voluptates dignissimos expedita dolore sequi incidunt ipsam impedit esse dolorem dolores mollitia perferendis, veritatis corrupti porro alias? Beatae eum odio accusantium ea vel ipsa veniam magnam quaerat perferendis, a ducimus ipsum, quisquam reprehenderit quam repellat placeat quidem error! Possimus, expedita. Alias",
-      price: "100",
-      rate: "3.7",
-    },
-  ];
+export default async function Tours() {
+
+  const data = await getTours();
+  const toursArray = data.data?.data!;
 
   return (
     <section className="min-h-screen w-full md:pt-32 pt-32 md:px-24 px-12 flex  items-center flex-col">
@@ -107,13 +27,13 @@ export default function Tours() {
           className="placeholder:px-2 font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2 focus:bg-transparent focus:border-black text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
         />
       </div>
-      <div className="my-10  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+      <div className="my-10 w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {toursArray.map((tour, index) => (
-          <TourCard key={index} params={tour} />
+          < TourCard key={index} params={tour} img={tourImg} />
         ))}
       </div>
 
-      <Pagination className="my-10">
+      {/* <Pagination className="my-10">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="#" />
@@ -129,7 +49,7 @@ export default function Tours() {
             <PaginationNext href="#" />
           </PaginationItem>
         </PaginationContent>
-      </Pagination>
+      </Pagination> */}
     </section>
   );
 }

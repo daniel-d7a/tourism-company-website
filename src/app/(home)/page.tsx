@@ -6,6 +6,7 @@ import StrongPointsSection from "@/components/strongpointssection";
 import TopDestinationSection from "@/components/TopDestinationSection";
 
 export default function Home() {
+
   return (
     <main>
       <Nav />
