@@ -26,7 +26,7 @@ export const SideBar = () => {
           href="/dashboard/transactions"
           Icon={<Banknote {...iconProps} />}
         >
-          transactions
+          Reservations
         </ListItem>
         <ListItem
           href="/dashboard/reviews"

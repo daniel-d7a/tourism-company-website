@@ -15,9 +15,9 @@ export const ReviewText = ({ getValue }: CellContext<TourReview, string>) => {
       {displayShowMore ? (
         <>
           {showMore ? (
-            <p>{getValue()}</p>
+            <span>{getValue()}</span>
           ) : (
-            <p>{truncateText(getValue(), 100)}</p>
+            <span>{truncateText(getValue(), 100)}</span>
           )}
 
           <span
