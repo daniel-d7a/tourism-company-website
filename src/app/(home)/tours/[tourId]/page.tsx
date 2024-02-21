@@ -38,7 +38,7 @@ export default async function TourPage({
 
   return (
     <>
-      <div className="md:px-24 md:pt-32 pt-52 px-10 flex justify-between grid md:grid-cols-2 gap-5">
+      <div className="md:px-24 md:pt-32 pt-52 px-10 justify-between grid md:grid-cols-2 gap-5">
         <div className="w-full flex justify-center items-baseline">
           <Carousel className="w-4/5 md:w-full">
             <CarouselPrevious />
@@ -120,7 +120,8 @@ export default async function TourPage({
 
         </div>
       </div >
-      <div className="my-10 md:px-24 px-12">
+
+      <div className="md:px-24 px-12">
         <h3 className="text-3xl font-bold my-3 py-3 border-b-2">Reviews</h3>
         <div className="grid md:grid-cols-2 gap-3">
           <div>

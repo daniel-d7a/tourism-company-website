@@ -8,7 +8,7 @@ export default function Nav() {
 
 
   return (
-    <header className="w-screen text-black bg-white  shadow-md fixed z-50">
+    <header className="w-screen text-black bg-white  shadow-md fixed z-20">
       <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <Link
           href="/"
