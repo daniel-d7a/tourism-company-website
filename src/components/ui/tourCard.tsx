@@ -1,13 +1,14 @@
+"use client"
 import Image, { StaticImageData } from "next/image";
 import star from "../../assets/star.png"
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import { Tour } from "@/models/Tour";
 
-export default function TourCard({ params, img }: { params: Tour, img: StaticImageData }) {
+export default function TourCard({ params }: { params: Tour }) {
   return (
     <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-      <Image className="lg:h-48 md:h-40 w-full object-cover object-center hover:scale-110 transition duration-500 cursor-pointer" src={img} alt={params.name} />
+      <Image className="lg:h-48 md:h-40 w-full object-cover object-center hover:scale-110 transition duration-500 cursor-pointer" src={params.media?.[0].original_url} width={100} height={50} alt={params.name} />
       <div className="p-3 capitalize">
         <h2 className="tracking-widest text-xs font-medium text-gray-400 mb-1">{params.location}</h2>
         <div className="flex items-center justify-between">
