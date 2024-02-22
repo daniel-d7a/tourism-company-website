@@ -4,7 +4,7 @@ import { columns } from "./ReviewTableColumns";
 import { PaginationData } from "@/models/PaginatedResponse";
 import { TourReview } from "@/models/Tour";
 import { useSearchParams } from "next/navigation";
-import { Paginator } from "@/components/TablePagination";
+import { Paginator } from "@/components/Paginator";
 import { TableUI } from "@/components/TableUi";
 
 export const ReviewsTable = ({

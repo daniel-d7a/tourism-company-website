@@ -47,5 +47,3 @@ export const tourSchema = z.object({
 });
 
 export type tourFormData = z.infer<typeof tourSchema>;
-
-export type ListType = "includes" | "excludes";

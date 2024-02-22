@@ -4,7 +4,7 @@ import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "./ToursTableColumns";
 import { Tour } from "@/models/Tour";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Paginator } from "../../../../components/TablePagination";
+import { Paginator } from "../../../../components/Paginator";
 import { PaginationData } from "@/models/PaginatedResponse";
 import { TableUI } from "@/components/TableUi";
 
