@@ -4,7 +4,7 @@ import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "./ToursTableColumns";
 import { Tour } from "@/models/Tour";
 import { useRouter, useSearchParams } from "next/navigation";
-import { TablePagination } from "../../../../components/TablePagination";
+import { Paginator } from "../../../../components/TablePagination";
 import { PaginationData } from "@/models/PaginatedResponse";
 import { TableUI } from "@/components/TableUi";
 
@@ -33,7 +33,10 @@ export function ToursTable({ data }: { data: PaginationData<Tour> }) {
         table={table}
         onRowClick={(row) => router.push(`/dashboard/tours/${row.id}`)}
       />
-      <TablePagination table={table} />
+      <Paginator
+        page={table.getState().pagination.pageIndex}
+        lastPage={table.getPageCount()}
+      />
     </>
   );
 }

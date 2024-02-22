@@ -8,12 +8,15 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Table } from "@tanstack/react-table";
 import { usePathname } from "next/navigation";
 
-export const TablePagination = <T,>({ table }: { table: Table<T> }) => {
-  const page = table.getState().pagination.pageIndex;
-  const lastPage = table.getPageCount();
+export const Paginator = ({
+  page,
+  lastPage,
+}: {
+  page: number;
+  lastPage: number;
+}) => {
   const pathname = usePathname();
 
   // last page = 1 => 1

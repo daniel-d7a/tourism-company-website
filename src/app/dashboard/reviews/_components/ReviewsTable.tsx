@@ -4,7 +4,7 @@ import { columns } from "./ReviewTableColumns";
 import { PaginationData } from "@/models/PaginatedResponse";
 import { TourReview } from "@/models/Tour";
 import { useSearchParams } from "next/navigation";
-import { TablePagination } from "@/components/TablePagination";
+import { Paginator } from "@/components/TablePagination";
 import { TableUI } from "@/components/TableUi";
 
 export const ReviewsTable = ({
@@ -32,7 +32,10 @@ export const ReviewsTable = ({
   return (
     <>
       <TableUI table={table} />
-      <TablePagination table={table} />
+      <Paginator
+        page={table.getState().pagination.pageIndex}
+        lastPage={table.getPageCount()}
+      />
     </>
   );
 };
