@@ -10,8 +10,8 @@ export default async function SingleTourPage({
   const tour = await getSingleTour(Number(tourId));
   const { name, description, location, duration, media, includes, excludes } =
     tour.data!;
-  console.log(media?.[0]?.original_url);
-  console.log(media?.[0]);
+  // console.log(media?.[0]?.original_url);
+  // console.log(media?.[0]);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
 
 export const tourSchema = z.object({
@@ -41,6 +42,13 @@ export const tourSchema = z.object({
       z.object({
         name: z.string().min(1, "Option name cannot be empty"),
         price: z.coerce.number().min(1, "Price cannot be less than 1"),
+      })
+    )
+    .optional(),
+  media: z
+    .array(
+      z.object({
+        file: z.instanceof(File),
       })
     )
     .optional(),

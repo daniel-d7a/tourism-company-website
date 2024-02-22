@@ -14,9 +14,9 @@ export async function getTours(page: number = 1) {
 }
 
 export async function deleteTour(id: number) {
-  const responseData = await http.deleteRequest<Tour>(`${endpoint}/${id}`);
+  const responseData = await http.deleteRequest(`${endpoint}/${id}`);
 
-  if (responseData.success) {
+  if (responseData.ok) {
     revalidatePath("/dashboard/tours");
   }
   return responseData;
@@ -26,12 +26,8 @@ export async function getSingleTour(id: number) {
   return await http.getRequest<Tour>(`${endpoint}/${id}`);
 }
 
-export async function addTour(data: tourFormData) {
-  const responseData = await http.postRequest<Tour>(`${endpoint}/store`, {
-    ...data,
-    includes: data.includes?.map((i) => i.value),
-    excludes: data.excludes?.map((i) => i.value),
-  } as Tour);
+export async function addTour(data: FormData) {
+  const responseData = await http.postRequest(`${endpoint}/store`, data);
 
   if (responseData.success) {
     revalidatePath("/dashboard/tours");
@@ -41,14 +37,11 @@ export async function addTour(data: tourFormData) {
 }
 
 export async function updateTour(id: number, data: tourFormData) {
-  const responseData = await http.postRequest<Tour>(
-    `${endpoint}/update/${id}`,
-    {
-      ...data,
-      includes: data.includes?.map((i) => i.value) || [],
-      excludes: data.excludes?.map((i) => i.value) || [],
-    } as Tour
-  );
+  const responseData = await http.postRequest(`${endpoint}/update/${id}`, {
+    ...data,
+    includes: data.includes?.map((i) => i.value) || [],
+    excludes: data.excludes?.map((i) => i.value) || [],
+  });
 
   if (responseData.success) {
     revalidatePath("/dashboard/tours");

@@ -14,25 +14,25 @@ async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   return responseData;
 }
 
-async function postRequest<TResponse, TBody = TResponse>(
-  endpoint: string,
-  data: TBody
-) {
+async function postRequest<TResponse>(endpoint: string, data: any) {
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       accept: "application/json",
       authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify(data),
+    body: data,
   });
 
   const responseData: ApiResponse<TResponse> = await response.json();
+
+  console.log("data", data);
+  console.log("responseData", responseData);
+
   return responseData;
 }
 
-async function deleteRequest<TResponse>(endpoint: string) {
+async function deleteRequest(endpoint: string) {
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "DELETE",
     headers: {
@@ -41,9 +41,7 @@ async function deleteRequest<TResponse>(endpoint: string) {
       authorization: `Bearer ${getToken()}`,
     },
   });
-
-  const responseData: ApiResponse<TResponse> = await response.json();
-  return responseData;
+  return response;
 }
 
 export { getRequest, postRequest, deleteRequest };

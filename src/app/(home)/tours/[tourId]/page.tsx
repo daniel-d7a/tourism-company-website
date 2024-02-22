@@ -15,7 +15,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { getSingleTour } from "@/lib/tour/tour.actions";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-
 export default async function TourPage({
   params,
 }: {
@@ -36,6 +35,8 @@ export default async function TourPage({
     reviews,
   } = tour.data!;
 
+  console.log("new media", media);
+
   return (
     <>
       <div className="md:px-24 md:pt-32 pt-52 px-10 justify-between grid md:grid-cols-2 gap-5">
@@ -44,13 +45,17 @@ export default async function TourPage({
             <CarouselPrevious />
             <CarouselNext />
             <CarouselContent>
-              {
-                media?.map((item, index) =>
-                  <CarouselItem key={index}>
-                    <Image src={item.original_url} alt={name} width={500} height={200} className="w-full h-auto" />
-                  </CarouselItem>
-                )
-              }
+              {media?.map((item, index) => (
+                <CarouselItem key={index}>
+                  <Image
+                    src={item.original_url}
+                    alt={name}
+                    width={500}
+                    height={200}
+                    className="w-full h-auto"
+                  />
+                </CarouselItem>
+              ))}
 
               {/* {media?.map((item, index) => (
                 <CarouselItem key={index}>
@@ -89,9 +94,7 @@ export default async function TourPage({
             ))}
           </ul>
 
-          <h3 className="text-2xl font-bold my-4">
-            price : {price} $
-          </h3>
+          <h3 className="text-2xl font-bold my-4">price : {price} $</h3>
 
           <h3 className="text-2xl font-bold my-2">Options</h3>
           <ul className="mx-5 text-xl">
@@ -113,13 +116,14 @@ export default async function TourPage({
             ))}
           </ul>
 
-          <Link href={`/tours/${tourId}/reserve`}
-            className="w-1/2 block text-2xl text-center font-medium mx-auto px-5 py-2 my-16 rounded-md text-white bg-secondary-foreground hover:bg-secondary">
+          <Link
+            href={`/tours/${tourId}/reserve`}
+            className="w-1/2 block text-2xl text-center font-medium mx-auto px-5 py-2 my-16 rounded-md text-white bg-secondary-foreground hover:bg-secondary"
+          >
             reserve
           </Link>
-
         </div>
-      </div >
+      </div>
 
       <div className="md:px-24 px-12">
         <h3 className="text-3xl font-bold my-3 py-3 border-b-2">Reviews</h3>
@@ -127,12 +131,9 @@ export default async function TourPage({
           <div>
             <h3 className="text-2xl font-bold">Overall Reviews</h3>
             <div className="flex items-center">
-              <span className="text-3xl font-bold">
-                5
-              </span>
+              <span className="text-3xl font-bold">5</span>
               <Image className="mx-2" src={star} alt="rate" width={25} />
             </div>
-
           </div>
           <div>
             {reviews?.map((item, index) => (

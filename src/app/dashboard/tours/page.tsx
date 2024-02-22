@@ -13,7 +13,7 @@ export default async function ToursPage({
 
   return (
     <>
-      <div className="text-2xl font-semibold py-4 px-4 ml-0.5 bg-white flex  items-center justify-between">
+      <div className="text-2xl font-semibold h-20 shadow-md py-4 px-4 ml-0.5 bg-white flex  items-center justify-between">
         Tours
         <Button>
           <Link href="/dashboard/tours/add">add</Link>

@@ -8,99 +8,74 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useFieldArray, useForm } from "react-hook-form";
-import { tourFormData, tourSchema } from "./TourForm.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { LoadingSpinner } from "@/components/ui/loadingSpinner";
-import { addTour, updateTour } from "@/lib/tour/tour.actions";
 import { Tour } from "@/models/Tour";
+import { useDropzone } from "react-dropzone";
+import Image from "next/image";
+import { IoMdCloseCircle, IoMdClose } from "react-icons/io";
+import { useTourForm } from "./TourForm.hooks";
 
 export const TourForm = ({ tourData }: { tourData?: Tour }) => {
-  const form = useForm<tourFormData>({
-    resolver: zodResolver(tourSchema),
-    values: tourData
-      ? {
-          ...tourData,
-          includes: tourData?.includes?.map((value) => ({ value })),
-          excludes: tourData?.excludes?.map((value) => ({ value })),
-        }
-      : undefined,
-  });
-  const router = useRouter();
+  const { form, onSubmit, options, excludes, includes, media, add } =
+    useTourForm(tourData);
 
-  const options = useFieldArray({
-    name: "options",
-    control: form.control,
-  });
-  const includes = useFieldArray({
-    name: "includes",
-    control: form.control,
-  });
-  const excludes = useFieldArray({
-    name: "excludes",
-    control: form.control,
-  });
-
-  const addOption = () => {
-    if (options.fields.at(-1)?.name === "") {
-      form.setError("options", { message: "Option name cannot be empty" });
-      form.setFocus(`options.${options.fields.length - 1}.name`);
-      return;
-    }
-    form.clearErrors("options");
-    options.append({ name: "", price: 0 });
-  };
-  const addInclude = () => {
-    if (includes.fields.at(-1)?.value === "") {
-      form.setError("includes", {
-        message: "Include name cannot be empty",
-      });
-      form.setFocus(`includes.${includes.fields.length - 1}.value`);
-      return;
-    }
-    form.clearErrors("includes");
-    includes.append({ value: "" });
-  };
-  const addExclude = () => {
-    if (excludes.fields.at(-1)?.value === "") {
-      form.setError("excludes", {
-        message: "excludes name cannot be empty",
-      });
-      form.setFocus(`excludes.${excludes.fields.length - 1}.value`);
-      return;
-    }
-    form.clearErrors("excludes");
-    excludes.append({ value: "" });
-  };
-
-  const onSubmit = form.handleSubmit(async (data) => {
-    let result;
-
-    if (tourData) {
-      result = await updateTour(tourData.id, data);
-    } else {
-      result = await addTour(data);
-    }
-
-    if (result.success) {
-      toast.success(`Tour ${tourData ? "updated" : "added"} successfully`);
-      router.push("/dashboard/tours");
-    } else {
-      toast.error(result.message);
-    }
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: {
+      "image/*": [".jpeg", ".png"],
+    },
+    onDrop: (acceptedFiles: File[]) => {
+      media.append(
+        acceptedFiles.map((file) => ({
+          file,
+        }))
+      );
+    },
+    multiple: true,
   });
 
   return (
     <Form {...form}>
       <form
         onSubmit={onSubmit}
-        className="mx-10 my-6 px-4 py-6 space-y-4 bg-white"
+        className="mx-10 my-6 px-4 py-6 space-y-4 bg-white rounded-lg shadow-md"
       >
+        <div
+          {...getRootProps({
+            className: `cursor-pointer bg-blue-100 p-2 rounded-md h-16 text-center 
+                  flex justify-center items-center text-gray-700 transition-all
+                  ${isDragActive ? "border-2" : ""}
+
+                  `,
+          })}
+        >
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Release to Drop ...</p>
+          ) : (
+            <p className="text-neutral-400">
+              <span className="text-gray-800">drag and drop</span> some images
+              here
+              <br />
+              or <span className="text-gray-800">click</span> to select images
+            </p>
+          )}
+        </div>
+        {!!media.fields.length && (
+          <div
+            className={`flex gap-2 justify-start items-center overflow-x-auto bg-neutral-200 rounded-md px-2 py-4`}
+          >
+            {media.fields.map((image, index) => (
+              <ImagePreview
+                key={image.id}
+                image={image.file}
+                remove={() => media.remove(index)}
+              />
+            ))}
+          </div>
+        )}
         <FormField
           control={form.control}
           name="name"
@@ -189,7 +164,7 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
                   )}
                 />
                 <Button type="button" onClick={() => includes.remove(index)}>
-                  x
+                  <IoMdClose size={20} />
                 </Button>
               </div>
             ))}
@@ -201,7 +176,15 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
           </div>
 
           <Button
-            onClick={addInclude}
+            onClick={() =>
+              add(
+                includes,
+                "includes",
+                (item) => item?.value === "",
+                "Include name cannot be empty",
+                { value: "" }
+              )
+            }
             type="button"
             variant={"outline"}
             className="w-32"
@@ -228,7 +211,7 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
                   )}
                 />
                 <Button type="button" onClick={() => excludes.remove(index)}>
-                  x
+                  <IoMdClose size={20} />
                 </Button>
               </div>
             ))}
@@ -239,7 +222,15 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
             )}
           </div>
           <Button
-            onClick={addExclude}
+            onClick={() =>
+              add(
+                excludes,
+                "excludes",
+                (item) => item?.value === "",
+                "Excludes name cannot be empty",
+                { value: "" }
+              )
+            }
             type="button"
             variant={"outline"}
             className="w-32"
@@ -276,7 +267,7 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
                   )}
                 />
                 <Button type="button" onClick={() => options.remove(index)}>
-                  x
+                  <IoMdClose size={20} />
                 </Button>
               </div>
             ))}
@@ -288,7 +279,15 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
           </div>
 
           <Button
-            onClick={addOption}
+            onClick={() =>
+              add(
+                options,
+                "options",
+                (item) => item?.name === "",
+                "Option name cannot be empty",
+                { name: "", price: 0 }
+              )
+            }
             type="button"
             variant={"outline"}
             className="w-32"
@@ -307,5 +306,27 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
         </Button>{" "}
       </form>
     </Form>
+  );
+};
+
+const ImagePreview = ({
+  image,
+  remove,
+}: {
+  image: File;
+  remove: () => void;
+}) => {
+  return (
+    <div className="relative">
+      <span onClick={remove} className="absolute top-0 right-0 cursor-pointer">
+        <IoMdCloseCircle color="red" />
+      </span>
+      <Image
+        src={URL.createObjectURL(image)}
+        alt="image"
+        width={100}
+        height={100}
+      />
+    </div>
   );
 };

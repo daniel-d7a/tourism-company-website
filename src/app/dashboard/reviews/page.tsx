@@ -7,7 +7,7 @@ export default async function page({
   searchParams: { page: number };
 }) {
   const reviews = await getReviews(page);
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
     <>
