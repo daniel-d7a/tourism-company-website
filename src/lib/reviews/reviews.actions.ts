@@ -18,22 +18,18 @@ export async function getSingleReview(id: number) {
 }
 
 export async function forceDeleteReview(id: number) {
-  const responseData = await http.deleteRequest<TourReview>(
-    `${endpoint}/remove/${id}`
-  );
+  const responseData = await http.deleteRequest(`${endpoint}/remove/${id}`);
 
-  if (responseData.success) {
+  if (responseData.ok) {
     revalidatePath("/dashboard/reviews");
   }
   return responseData;
 }
 
 export async function softDeleteReview(id: number) {
-  const responseData = await http.deleteRequest<TourReview>(
-    `${endpoint}/${id}`
-  );
+  const responseData = await http.deleteRequest(`${endpoint}/${id}`);
 
-  if (responseData.success) {
+  if (responseData.ok) {
     revalidatePath("/dashboard/reviews");
   }
   return responseData;
