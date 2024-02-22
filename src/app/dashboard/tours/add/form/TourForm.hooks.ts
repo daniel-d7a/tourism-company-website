@@ -22,6 +22,18 @@ export const useTourForm = (tourData?: Tour) => {
 
   const form = useForm<tourFormData>({
     resolver: zodResolver(tourSchema),
+
+    values: tourData
+      ? {
+          ...tourData,
+          includes: tourData?.includes?.map((value) => ({ value })),
+          excludes: tourData?.excludes?.map((value) => ({ value })),
+          media: tourData?.media?.map(({ original_url, id }) => ({
+            file: { url: original_url, id },
+          })),
+        }
+      : undefined,
+
     // TODO: make this work with images
     // values: tourData
     //   ? {
@@ -38,8 +50,13 @@ export const useTourForm = (tourData?: Tour) => {
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
       if (key === "media") {
+        if (tourData) return;
         data.media?.forEach((value, index) => {
-          formData.append(`${key}[${index}]`, value.file);
+          if (value.file instanceof File) {
+            formData.append(`${key}[${index}]`, value.file);
+          } else {
+            formData.append(`${key}[${index}]`, value.file.url);
+          }
         });
       } else if (key === "includes" || key === "excludes") {
         data[key]?.forEach((value, index) => {
@@ -60,7 +77,7 @@ export const useTourForm = (tourData?: Tour) => {
     });
 
     if (tourData) {
-      result = await updateTour(tourData.id, data);
+      result = await updateTour(tourData.id, formData);
     } else {
       result = await addTour(formData);
     }

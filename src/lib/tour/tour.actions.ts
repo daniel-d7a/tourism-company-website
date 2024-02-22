@@ -36,15 +36,30 @@ export async function addTour(data: FormData) {
   return responseData;
 }
 
-export async function updateTour(id: number, data: tourFormData) {
-  const responseData = await http.postRequest(`${endpoint}/update/${id}`, {
-    ...data,
-    includes: data.includes?.map((i) => i.value) || [],
-    excludes: data.excludes?.map((i) => i.value) || [],
-  });
+export async function updateTour(id: number, data: FormData) {
+  const responseData = await http.postRequest(`${endpoint}/update/${id}`, data);
 
   if (responseData.success) {
     revalidatePath("/dashboard/tours");
   }
   return responseData;
+}
+
+export async function deleteTourImage(tourId: number, mediaId: string) {
+  await http.postRequest(
+    `${endpoint}/delete-image/${tourId}`,
+    JSON.stringify({ mediaId }),
+    { "Content-Type": "application/json" }
+  );
+}
+
+export async function addTourImage(tourId: number, formData: FormData) {
+  const res = await http.postRequest(
+    `${endpoint}/add-image/${tourId}`,
+    formData
+  );
+
+  revalidatePath(`/dashboard/tours/${tourId}`);
+
+  console.log("add image res", res);
 }

@@ -14,12 +14,17 @@ async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   return responseData;
 }
 
-async function postRequest<TResponse>(endpoint: string, data: any) {
+async function postRequest<TResponse>(
+  endpoint: string,
+  data: any,
+  headers?: HeadersInit
+) {
   const response = await fetch(`${API_URL}${endpoint}`, {
     method: "POST",
     headers: {
       accept: "application/json",
       authorization: `Bearer ${getToken()}`,
+      ...headers,
     },
     body: data,
   });

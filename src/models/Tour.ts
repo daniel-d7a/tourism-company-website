@@ -18,6 +18,7 @@ export type TourOption = {
 };
 
 export type TourMedia = {
+  id: number;
   original_url: string;
 };
 

@@ -17,6 +17,7 @@ import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import { IoMdCloseCircle, IoMdClose } from "react-icons/io";
 import { useTourForm } from "./TourForm.hooks";
+import { addTourImage, deleteTourImage } from "@/lib/tour/tour.actions";
 
 export const TourForm = ({ tourData }: { tourData?: Tour }) => {
   const { form, onSubmit, options, excludes, includes, media, add } =
@@ -26,7 +27,14 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
     accept: {
       "image/*": [".jpeg", ".png"],
     },
-    onDrop: (acceptedFiles: File[]) => {
+    onDrop: async (acceptedFiles: File[]) => {
+      if (tourData) {
+        for (const file of acceptedFiles) {
+          const formData = new FormData();
+          formData.append("media", file);
+          await addTourImage(tourData.id, formData);
+        }
+      }
       media.append(
         acceptedFiles.map((file) => ({
           file,
@@ -70,8 +78,13 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
             {media.fields.map((image, index) => (
               <ImagePreview
                 key={image.id}
-                image={image.file}
-                remove={() => media.remove(index)}
+                image={image.file instanceof File ? image.file : image.file.url}
+                remove={async () => {
+                  media.remove(index);
+                  if (!(image.file instanceof File)) {
+                    await deleteTourImage(tourData!.id, String(image.file.id));
+                  }
+                }}
               />
             ))}
           </div>
@@ -313,20 +326,16 @@ const ImagePreview = ({
   image,
   remove,
 }: {
-  image: File;
+  image: File | string;
   remove: () => void;
 }) => {
+  const url = typeof image === "string" ? image : URL.createObjectURL(image);
   return (
     <div className="relative">
       <span onClick={remove} className="absolute top-0 right-0 cursor-pointer">
         <IoMdCloseCircle color="red" />
       </span>
-      <Image
-        src={URL.createObjectURL(image)}
-        alt="image"
-        width={100}
-        height={100}
-      />
+      <Image src={url} alt="image" width={100} height={100} />
     </div>
   );
 };

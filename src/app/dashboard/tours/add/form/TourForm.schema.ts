@@ -48,7 +48,12 @@ export const tourSchema = z.object({
   media: z
     .array(
       z.object({
-        file: z.instanceof(File),
+        file: z.instanceof(File).or(
+          z.object({
+            url: z.string(),
+            id: z.number(),
+          })
+        ),
       })
     )
     .optional(),
