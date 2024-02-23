@@ -7,15 +7,14 @@ export default function page() {
     return (
         <section className="capitalize">
             <div className="min-w-full h-screen relative">
-                <div className=" flex items-center justify-center w-full h-full bg-black bg-opacity-35 text-white absolute z-10">
+                <div className=" flex items-center justify-center w-full h-full bg-black bg-opacity-35 text-white absolute z-0">
                     <h1 className="text-6xl text-center m-3">About Us</h1>
                 </div>
                 <Image
                     src={img}
-                    alt="homepage"
-                    layout="fill"
+                    alt="homepage" fill
                     objectFit="cover"
-                    className="z-0 absolute"
+                    className="-z-10 absolute"
                 />
             </div>
             <div className="p-16 my-10 grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -59,10 +58,10 @@ export default function page() {
                 <h2 className="text-4xl font-semibold">TOP PARTNERS</h2>
                 <p className="font-semibold my-5">Check out our partners</p>
                 <div className="grid md:grid-cols-4 gap-4 justify-items-center">
-                    <Image src={partner} alt="partner" layout="fit" />
-                    <Image src={partner} alt="partner" layout="fit" />
-                    <Image src={partner} alt="partner" layout="fit" />
-                    <Image src={partner} alt="partner" layout="fit" />
+                    <Image src={partner} alt="partner" />
+                    <Image src={partner} alt="partner" />
+                    <Image src={partner} alt="partner" />
+                    <Image src={partner} alt="partner" />
                 </div>
             </div>
         </section>

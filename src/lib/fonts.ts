@@ -1,4 +1,4 @@
-import { Inter as FontSans, Playfair_Display } from "next/font/google";
+import { Inter as FontSans, Playfair_Display, Lato } from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -8,4 +8,10 @@ export const fontSans = FontSans({
 export const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   variable: "--playfair-display",
+});
+
+export const lato = Lato({
+  subsets: ["latin"],
+  weight: ['400'],
+  variable: "--lato",
 });

@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main>
       <div className="min-w-full h-screen relative">
-        <div className="capitalize flex items-center justify-center w-full h-full bg-black bg-opacity-35 text-white absolute z-10">
+        <div className="capitalize flex items-center justify-center w-full h-full bg-black bg-opacity-35 text-white absolute z-0">
           <div className="text-center">
             <h1 className="text-6xl shadow-md m-3">Explore the World</h1>
             <p className="text-2xl shadow-md">Your Journey, Our Expertise!</p>
@@ -21,7 +21,7 @@ export default function Home() {
           alt="homepage"
           layout="fill"
           objectFit="cover"
-          className="z-0 absolute"
+          className="-z-10 absolute"
         />
       </div>
       <WelcomeSection />

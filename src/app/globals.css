@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navItem {
-  @apply mr-5 hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2 mx-2;
+  @apply  hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2;
 }
 
 .title {

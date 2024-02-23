@@ -16,7 +16,7 @@ export default async function Tours() {
   const toursArray = data.data?.data!;
 
   return (
-    <section className="min-h-screen w-full pt-52 md:pt-32  md:px-24 px-12 flex  items-center flex-col">
+    <section className="min-h-screen w-full pt-24 md:pt-32  md:px-24 px-8 flex  items-center flex-col">
       <input
         type="text"
         placeholder="Search..."
@@ -26,7 +26,7 @@ export default async function Tours() {
       />
       <div className="my-10 w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {toursArray?.map((tour, index) => (
-          <TourCard key={index} params={tour} />
+          <TourCard key={index} tour={tour} />
         ))}
       </div>
 
