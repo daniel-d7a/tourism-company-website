@@ -1,11 +1,9 @@
 "use client";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "./ReviewTableColumns";
-import { PaginationData } from "@/models/PaginatedResponse";
-import { TourReview } from "@/models/Tour";
+import { TourReview, PaginationData } from "@/models";
 import { useSearchParams } from "next/navigation";
-import { Paginator } from "@/components/Paginator";
-import { TableUI } from "@/components/TableUi";
+import { Paginator, TableUI } from "@/components/lib";
 
 export const ReviewsTable = ({
   data,

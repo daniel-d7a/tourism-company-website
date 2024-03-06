@@ -1,4 +1,4 @@
-import { getSingleTour } from "@/lib/tour/tour.actions";
+import { getSingleTour } from "@/lib/actions/tour.actions";
 import { SingleTourButtons } from "./_components/SingleTourButtons";
 import Image from "next/image";
 

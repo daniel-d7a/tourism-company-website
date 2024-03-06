@@ -1,7 +1,7 @@
 import Image from "next/image";
-import welcomeImg from "../assets/section1.webp";
+import welcomeImg from "@/assets/section1.webp";
 
-export default function WelcomeSection() {
+export function WelcomeSection() {
   return (
     <section className="mt-5 md:p-20 p-10">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 ">

@@ -1,5 +1,4 @@
-import Footer from "@/components/layout/footer";
-import Nav from "@/components/layout/navBar";
+import { Footer, Nav } from "@/components/layout";
 
 export default function HomeLayout({
   children,

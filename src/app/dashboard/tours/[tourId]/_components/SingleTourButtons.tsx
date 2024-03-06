@@ -1,7 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { LoadingSpinner } from "@/components/ui/loadingSpinner";
-import { deleteTour } from "@/lib/tour/tour.actions";
+import { Button, LoadingSpinner } from "@/components/ui";
+import { deleteTour } from "@/lib/actions/tour.actions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,11 +18,11 @@ export function SingleTourButtons({ tourId }: { tourId: number }) {
           setIsDeleteLoading(true);
 
           const result = await deleteTour(tourId);
-          if (result.success) {
+          if (result.ok) {
             toast.success("Tour deleted successfully");
             router.push("/dashboard/tours");
           } else {
-            toast.error(result.message);
+            toast.error(await result.json());
           }
           setIsDeleteLoading(false);
         }}

@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { Button, LoadingSpinner } from "@/components/ui";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
-import { LoadingSpinner } from "@/components/ui/loadingSpinner";
 import { CellContext } from "@tanstack/react-table";
-import { TourReview } from "@/models/Tour";
-import { forceDeleteReview } from "@/lib/reviews/reviews.actions";
+import { TourReview } from "@/models";
+import { forceDeleteReview } from "@/lib/actions/reviews.actions";
 
 export function DeleteReview({ getValue }: CellContext<TourReview, number>) {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,10 +18,10 @@ export function DeleteReview({ getValue }: CellContext<TourReview, number>) {
         setIsLoading(true);
         const res = await forceDeleteReview(Number(getValue()));
 
-        if (res.success) {
+        if (res.ok) {
           toast.success("review deleted successfully");
         } else {
-          toast.error(res.message);
+          toast.error(await res.json());
         }
         setIsLoading(false);
       }}

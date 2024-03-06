@@ -7,10 +7,16 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/components/ui";
 import { usePathname } from "next/navigation";
 
-export const Paginator = ({ page,lastPage,}: {page: number;  lastPage: number;}) => {
+export const Paginator = ({
+  page,
+  lastPage,
+}: {
+  page: number;
+  lastPage: number;
+}) => {
   const pathname = usePathname();
 
   // last page = 1 => 1

@@ -1,4 +1,4 @@
-import { getReviews } from "@/lib/reviews/reviews.actions";
+import { getReviews } from "@/lib/actions/reviews.actions";
 import { ReviewsTable } from "./_components/ReviewsTable";
 
 export default async function page({

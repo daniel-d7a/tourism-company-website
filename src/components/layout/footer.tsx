@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="footer">
       <a className="flex title-font font-medium items-center md:justify-start justify-center">

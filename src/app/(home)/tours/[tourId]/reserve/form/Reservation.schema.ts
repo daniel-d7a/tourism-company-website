@@ -1,5 +1,5 @@
 import { PhoneNumberUtil } from "google-libphonenumber";
-import { TourOption } from "@/models/Tour";
+import { TourOption } from "@/models";
 import { z } from "zod";
 
 const phoneUtil = PhoneNumberUtil.getInstance();

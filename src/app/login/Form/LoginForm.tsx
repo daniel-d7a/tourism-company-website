@@ -7,16 +7,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+  Input,
+  Button,
+  LoadingSpinner,
+} from "@/components/ui";
 import { useForm } from "react-hook-form";
 import { LoginFormData, loginFormSchema } from "./loginform.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { login } from "./loginForm.actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { LoadingSpinner } from "@/components/ui/loadingSpinner";
 
 export const LoginForm = () => {
   const form = useForm<LoginFormData>({

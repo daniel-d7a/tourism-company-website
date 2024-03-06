@@ -1,11 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { Button, LoadingSpinner } from "@/components/ui";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
-import { LoadingSpinner } from "@/components/ui/loadingSpinner";
 import { CellContext } from "@tanstack/react-table";
-import { Tour } from "@/models/Tour";
-import { deleteTour } from "@/lib/tour/tour.actions";
+import { Tour } from "@/models";
+import { deleteTour } from "@/lib/actions/tour.actions";
 
 export function DeleteTourButton({ getValue }: CellContext<Tour, number>) {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,10 +17,10 @@ export function DeleteTourButton({ getValue }: CellContext<Tour, number>) {
         setIsLoading(true);
         const res = await deleteTour(Number(getValue()));
 
-        if (res.success) {
+        if (res.ok) {
           toast.success("Tour deleted successfully");
         } else {
-          toast.error(res.message);
+          toast.error(await res.json());
         }
         setIsLoading(false);
       }}

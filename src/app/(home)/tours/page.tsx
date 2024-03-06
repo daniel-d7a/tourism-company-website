@@ -1,19 +1,11 @@
-import tourImg from "@/assets/travelling.jpg";
-import TourCard from "@/components/ui/tourCard";
-import { getTours } from "@/lib/tour/tour.actions";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { TourCard } from "@/components/ui";
+import { getTours } from "@/lib/actions/tour.actions";
 
 export default async function Tours() {
   const data = await getTours();
   const toursArray = data.data?.data!;
+
+  console.log("toursArray", JSON.stringify(toursArray, null, 2));
 
   return (
     <section className="min-h-screen w-full pt-24 md:pt-32  md:px-24 px-8 flex  items-center flex-col">

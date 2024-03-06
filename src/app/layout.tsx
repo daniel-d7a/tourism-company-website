@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui";
 import { fontSans, playfairDisplay, lato } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-
-
 
 export const metadata: Metadata = {
   title: "All Seasons Tours",
@@ -12,11 +10,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        media: '(prefers-color-scheme: light)',
-        url: '/images/logo.png',
-        href: '/images/logo.png',
+        media: "(prefers-color-scheme: light)",
+        url: "/images/logo.png",
+        href: "/images/logo.png",
       },
-
     ],
   },
 };
@@ -31,7 +28,9 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable, playfairDisplay.variable, lato.variable
+          fontSans.variable,
+          playfairDisplay.variable,
+          lato.variable
         )}
       >
         {children}

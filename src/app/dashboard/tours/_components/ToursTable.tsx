@@ -2,11 +2,9 @@
 
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { columns } from "./ToursTableColumns";
-import { Tour } from "@/models/Tour";
+import { Tour, PaginationData } from "@/models";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Paginator } from "../../../../components/Paginator";
-import { PaginationData } from "@/models/PaginatedResponse";
-import { TableUI } from "@/components/TableUi";
+import { TableUI, Paginator } from "@/components/lib";
 
 export function ToursTable({ data }: { data: PaginationData<Tour> }) {
   const params = useSearchParams();

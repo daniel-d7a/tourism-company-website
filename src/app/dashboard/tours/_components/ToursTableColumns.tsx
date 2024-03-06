@@ -1,5 +1,5 @@
 import { truncateText } from "@/lib/utils";
-import { Tour } from "@/models/Tour";
+import { Tour } from "@/models";
 import { createColumnHelper } from "@tanstack/react-table";
 import { DeleteTourButton } from "./DeleteTourButton";
 

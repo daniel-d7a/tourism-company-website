@@ -1,15 +1,13 @@
 "use server";
-import { tourFormData } from "@/app/dashboard/tours/add/form/TourForm.schema";
-import { Tour } from "@/models/Tour";
+import { Tour, PaginationData } from "@/models";
 import { revalidatePath } from "next/cache";
-import * as http from "../fetch";
-import { PaginationData } from "@/models/PaginatedResponse";
+import * as http from "@/lib/helpers/fetch";
 
 const endpoint = "tours";
 
 export async function getTours(page: number = 1) {
   return await http.getRequest<PaginationData<Tour>>(
-    `${endpoint}/all?page=${page}`
+    `${endpoint}?page=${page}`
   );
 }
 
@@ -27,7 +25,7 @@ export async function getSingleTour(id: number) {
 }
 
 export async function addTour(data: FormData) {
-  const responseData = await http.postRequest(`${endpoint}/store`, data);
+  const responseData = await http.postRequest(`${endpoint}`, data);
 
   if (responseData.success) {
     revalidatePath("/dashboard/tours");
@@ -37,7 +35,7 @@ export async function addTour(data: FormData) {
 }
 
 export async function updateTour(id: number, data: FormData) {
-  const responseData = await http.postRequest(`${endpoint}/update/${id}`, data);
+  const responseData = await http.patchRequest(`${endpoint}/${id}`, data);
 
   if (responseData.success) {
     revalidatePath("/dashboard/tours");

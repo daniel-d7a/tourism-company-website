@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 
-export default function Nav() {
+export function Nav() {
   return (
-    <header className="w-screen text-black bg-white shadow-md fixed z-10
-     flex justify-between items-center md:px-16 px-8 md:py-0 py-2">
-
+    <header
+      className="w-screen text-black bg-white shadow-md fixed z-10
+     flex justify-between items-center md:px-16 px-8 md:py-0 py-2"
+    >
       <Link
         href="/"
         className="md:w-1/3 w-1/6 flex font-medium items-center text-white"
@@ -29,7 +30,6 @@ export default function Nav() {
           dashboard
         </Link>
       </nav>
-
     </header>
   );
 }

@@ -1,4 +1,4 @@
-import { TourReview } from "@/models/Tour";
+import { TourReview } from "@/models";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ReviewText } from "./ReviewText";
 import { DeleteReview } from "./DeleteReview";

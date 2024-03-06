@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { ToursTable } from "./_components/ToursTable";
-import { getTours } from "@/lib/tour/tour.actions";
+import { getTours } from "@/lib/actions/tour.actions";
 import Link from "next/link";
 
 export default async function ToursPage({
@@ -19,8 +19,7 @@ export default async function ToursPage({
           <Link href="/dashboard/tours/add">add</Link>
         </Button>
       </div>
-      <p className="ml-4 my-4 font-semibold text-3xl">Tours</p>
-      <div className="mb-4">
+      <div className="my-4">
         <ToursTable data={tableData} />
       </div>
     </>

@@ -6,7 +6,7 @@ import {
   TableHead,
   TableBody,
   Table as TableMain,
-} from "./ui/table";
+} from "@/components/ui";
 
 export const EmptyRow = ({ colSpan }: { colSpan: number }) => (
   <TableRow>

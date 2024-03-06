@@ -1,8 +1,7 @@
 "use client";
-
-import { Checkbox } from "@/components/ui/checkbox";
-import { softDeleteReview } from "@/lib/reviews/reviews.actions";
-import { TourReview } from "@/models/Tour";
+import { Checkbox } from "@/components/ui";
+import { softDeleteReview } from "@/lib/actions/reviews.actions";
+import { TourReview } from "@/models";
 import { CellContext } from "@tanstack/react-table";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -24,10 +23,10 @@ export const ShowReview = ({ getValue }: CellContext<TourReview, number>) => {
           } else {
             res = await softDeleteReview(Number(getValue()));
           }
-          if (res!.success) {
+          if (res!.ok) {
             toast.success("Tour deleted successfully");
           } else {
-            toast.error(res!.message);
+            toast.error(await res!.json());
           }
 
           setIsLoading(false);

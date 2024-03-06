@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Nav from "@/components/layout/navBar";
 import homeImg from "@/assets/homepage.jpg";
-import WelcomeSection from "@/components/WelcomeSection";
-import StrongPointsSection from "@/components/strongpointssection";
-import TopDestinationSection from "@/components/TopDestinationSection";
+import {
+  WelcomeSection,
+  TopDestinationSection,
+  StrongPointsSection,
+} from "@/components/lib";
 
 export default function Home() {
-
   return (
     <main>
       <div className="min-w-full h-screen relative">

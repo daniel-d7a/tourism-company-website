@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function reviewsection() {
+export  function reviewsection() {
     return (
         <></>
         //     <section className="text-gray-600 body-font">

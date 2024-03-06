@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import { z } from "zod";
 
 export const tourSchema = z.object({

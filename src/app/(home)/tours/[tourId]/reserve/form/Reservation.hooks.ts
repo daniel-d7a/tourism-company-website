@@ -5,7 +5,7 @@ import {
 } from "@/app/(home)/tours/[tourId]/reserve/form/Reservation.schema";
 import { useForm } from "react-hook-form";
 
-export const ReserveForm = () => {
+export const useReserveForm = () => {
   const reserveForm = useForm<reserveFormData>({
     resolver: zodResolver(reserveSchema),
     mode: "all",

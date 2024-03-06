@@ -7,9 +7,9 @@ import {
   useForm,
 } from "react-hook-form";
 import { tourFormData, tourSchema } from "./TourForm.schema";
-import { Tour } from "@/models/Tour";
+import { Tour } from "@/models";
 import { toast } from "sonner";
-import { addTour, updateTour } from "@/lib/tour/tour.actions";
+import { addTour, updateTour } from "@/lib/actions/tour.actions";
 
 type ItemType<T extends any[]> = T extends (infer U)[]
   ? U

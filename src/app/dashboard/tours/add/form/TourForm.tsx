@@ -7,17 +7,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { LoadingSpinner } from "@/components/ui/loadingSpinner";
-import { Tour } from "@/models/Tour";
+  Input,
+  LoadingSpinner,
+  Button,
+  Textarea,
+} from "@/components/ui";
+import { Tour } from "@/models";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import { IoMdCloseCircle, IoMdClose } from "react-icons/io";
 import { useTourForm } from "./TourForm.hooks";
-import { addTourImage, deleteTourImage } from "@/lib/tour/tour.actions";
+import { addTourImage, deleteTourImage } from "@/lib/actions/tour.actions";
 
 export const TourForm = ({ tourData }: { tourData?: Tour }) => {
   const { form, onSubmit, options, excludes, includes, media, add } =
