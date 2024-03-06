@@ -7,7 +7,6 @@ export default async function page({
   searchParams: { page: number };
 }) {
   const reviews = await getReviews(page);
-  // console.log(reviews);
 
   return (
     <>
@@ -15,7 +14,7 @@ export default async function page({
         Reviews
       </div>
       <div className="mt-4">
-        <ReviewsTable data={reviews.data!} />
+        <ReviewsTable data={reviews} />
       </div>
     </>
   );

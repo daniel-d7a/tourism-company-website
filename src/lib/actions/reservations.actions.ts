@@ -16,10 +16,10 @@ export async function getSingleReservation(id: number) {
 }
 
 export async function deleteReservation(id: number) {
-  const responseData = await http.deleteRequest(`${endpoint}/${id}`);
+  const res = await http.deleteRequest(`${endpoint}/${id}`);
 
-  if (responseData.ok) {
+  if (res.success) {
     revalidatePath("/dashboard/tours");
   }
-  return responseData;
+  return res;
 }

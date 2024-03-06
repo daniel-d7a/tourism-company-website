@@ -15,12 +15,12 @@ export function DeleteTourButton({ getValue }: CellContext<Tour, number>) {
       onClick={async (e) => {
         e.stopPropagation();
         setIsLoading(true);
-        const res = await deleteTour(Number(getValue()));
+        const { success, errors } = await deleteTour(Number(getValue()));
 
-        if (res.ok) {
+        if (success) {
           toast.success("Tour deleted successfully");
         } else {
-          toast.error(await res.json());
+          toast.error(errors);
         }
         setIsLoading(false);
       }}

@@ -2,6 +2,7 @@ import { PaginationData } from "./../../models/PaginatedResponse";
 import { ApiResponse } from "@/models";
 import { getToken } from "./token";
 import { API_URL, revalidat_interval } from "@/constants/api";
+import { notFound } from "next/navigation";
 
 async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   const response = await fetch(`${API_URL}${endpoint}`, {
@@ -12,16 +13,11 @@ async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
     next: { revalidate: revalidat_interval },
     ...options,
   });
+
+  if (!response.ok) notFound();
+
   const responseData: ApiResponse<TResponse> = await response.json();
-
-  // if (responseData.success) {
-  //   return responseData.data;
-  // } else {
-  //   if (responseData.data ) {
-  //   }
-  // }
-
-  return responseData;
+  return responseData.data as TResponse;
 }
 
 async function postRequest<TResponse>(
@@ -72,7 +68,9 @@ async function deleteRequest(endpoint: string) {
       authorization: `Bearer ${getToken()}`,
     },
   });
-  return response;
+
+  const responseData: ApiResponse<any> = await response.json();
+  return responseData;
 }
 
 export { getRequest, postRequest, deleteRequest, patchRequest };

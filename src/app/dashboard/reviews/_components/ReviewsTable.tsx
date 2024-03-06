@@ -8,13 +8,13 @@ import { Paginator, TableUI } from "@/components/lib";
 export const ReviewsTable = ({
   data,
 }: {
-  data: PaginationData<TourReview>;
+  data: PaginationData<TourReview> ;
 }) => {
   const params = useSearchParams();
   const pageIndex = Number(params.get("page")) || 1;
 
   const table = useReactTable({
-    data: data.data,
+    data: data.data || [],
     pageCount: data.last_page,
     columns,
     getCoreRowModel: getCoreRowModel(),

@@ -17,19 +17,19 @@ export async function getSingleReview(id: number) {
 }
 
 export async function forceDeleteReview(id: number) {
-  const responseData = await http.deleteRequest(`${endpoint}/${id}/destroy`);
+  const res = await http.deleteRequest(`${endpoint}/${id}/destroy`);
 
-  if (responseData.ok) {
+  if (res.success) {
     revalidatePath("/dashboard/reviews");
   }
-  return responseData;
+  return res;
 }
 
 export async function softDeleteReview(id: number) {
-  const responseData = await http.deleteRequest(`${endpoint}/${id}`);
+  const res = await http.deleteRequest(`${endpoint}/${id}`);
 
-  if (responseData.ok) {
+  if (res.success) {
     revalidatePath("/dashboard/reviews");
   }
-  return responseData;
+  return res;
 }

@@ -12,12 +12,12 @@ export async function getTours(page: number = 1) {
 }
 
 export async function deleteTour(id: number) {
-  const responseData = await http.deleteRequest(`${endpoint}/${id}`);
+  const res = await http.deleteRequest(`${endpoint}/${id}`);
 
-  if (responseData.ok) {
+  if (res.success) {
     revalidatePath("/dashboard/tours");
   }
-  return responseData;
+  return res;
 }
 
 export async function getSingleTour(id: number) {
@@ -52,12 +52,6 @@ export async function deleteTourImage(tourId: number, mediaId: string) {
 }
 
 export async function addTourImage(tourId: number, formData: FormData) {
-  const res = await http.postRequest(
-    `${endpoint}/add-image/${tourId}`,
-    formData
-  );
-
+  await http.postRequest(`${endpoint}/add-image/${tourId}`, formData);
   revalidatePath(`/dashboard/tours/${tourId}`);
-
-  console.log("add image res", res);
 }

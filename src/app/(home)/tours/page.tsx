@@ -3,7 +3,7 @@ import { getTours } from "@/lib/actions/tour.actions";
 
 export default async function Tours() {
   const data = await getTours();
-  const toursArray = data.data?.data!;
+  const toursArray = data.data;
 
   console.log("toursArray", JSON.stringify(toursArray, null, 2));
 

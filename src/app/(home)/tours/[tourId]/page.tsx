@@ -30,7 +30,7 @@ export default async function TourPage({
     options,
     price,
     reviews,
-  } = tour.data!;
+  } = tour;
 
   return (
     <>

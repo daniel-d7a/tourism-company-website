@@ -16,13 +16,12 @@ export function SingleTourButtons({ tourId }: { tourId: number }) {
         disabled={isDeleteLoading}
         onClick={async () => {
           setIsDeleteLoading(true);
-
-          const result = await deleteTour(tourId);
-          if (result.ok) {
+          const { success, errors } = await deleteTour(tourId);
+          if (success) {
             toast.success("Tour deleted successfully");
             router.push("/dashboard/tours");
           } else {
-            toast.error(await result.json());
+            toast.error(errors);
           }
           setIsDeleteLoading(false);
         }}

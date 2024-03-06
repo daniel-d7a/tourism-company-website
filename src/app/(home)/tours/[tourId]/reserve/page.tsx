@@ -1,5 +1,5 @@
 import { getSingleTour } from "@/lib/actions/tour.actions";
-import {ReservationForm} from "./form/ReservationForm";
+import { ReservationForm } from "./form/ReservationForm";
 
 export default async function Reserve({
   params: { tourId },
@@ -7,7 +7,9 @@ export default async function Reserve({
   params: { tourId: string };
 }) {
   const tour = await getSingleTour(Number(tourId));
-  const { options, price } = tour.data!;
+
+
+  const { options, price } = tour;
 
   return (
     <>

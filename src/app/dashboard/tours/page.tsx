@@ -9,8 +9,6 @@ export default async function ToursPage({
   searchParams: { page: number };
 }) {
   const data = await getTours(page);
-  const tableData = data.data!;
-
   return (
     <>
       <div className="text-2xl font-semibold h-20 shadow-md py-4 px-4 ml-0.5 bg-white flex  items-center justify-between">
@@ -20,7 +18,7 @@ export default async function ToursPage({
         </Button>
       </div>
       <div className="my-4">
-        <ToursTable data={tableData} />
+        <ToursTable data={data} />
       </div>
     </>
   );

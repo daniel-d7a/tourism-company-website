@@ -19,16 +19,16 @@ export const ShowReview = ({ getValue }: CellContext<TourReview, number>) => {
 
           let res;
 
-          if (state === "checked") {
-          } else {
-            res = await softDeleteReview(Number(getValue()));
+          if (state !== "checked") {
+            const { success, errors } = await softDeleteReview(
+              Number(getValue())
+            );
+            if (success) {
+              toast.success("Review deleted successfully");
+            } else {
+              toast.error(errors);
+            }
           }
-          if (res!.ok) {
-            toast.success("Tour deleted successfully");
-          } else {
-            toast.error(await res!.json());
-          }
-
           setIsLoading(false);
         }}
       />

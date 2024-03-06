@@ -10,7 +10,7 @@ export default async function EditPage({
 
   return (
     <>
-      <TourForm tourData={tourData.data!} />
+      <TourForm tourData={tourData} />
     </>
   );
 }
