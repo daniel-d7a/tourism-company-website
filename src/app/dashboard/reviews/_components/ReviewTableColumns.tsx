@@ -3,15 +3,14 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { ReviewText } from "./ReviewText";
 import { DeleteReview } from "./DeleteReview";
 import { ShowReview } from "./ShowReview";
+import { col } from "@/lib/helpers/table";
 
 const columnHelper = createColumnHelper<TourReview>();
 
+const column = col<TourReview>;
+
 export const columns = [
-  columnHelper.accessor((row) => row.title, {
-    id: "title",
-    cell: ({ getValue }) => <p>{getValue()}</p>,
-    header: () => <p>Title</p>,
-  }),
+  columnHelper.accessor(...column("title")),
   columnHelper.accessor((row) => row.body, {
     id: "body",
     cell: ReviewText,
@@ -22,6 +21,7 @@ export const columns = [
     cell: ({ getValue }) => <p className="text-center">{getValue()}</p>,
     header: () => <p className="text-center">Rating</p>,
   }),
+  // TODO:get tour with reviews
   columnHelper.accessor((row) => row.stars, {
     id: "tour name",
     cell: ({ getValue }) => <p className="text-center">{getValue()}</p>,

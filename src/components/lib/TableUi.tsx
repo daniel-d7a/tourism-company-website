@@ -1,4 +1,4 @@
-import { Table, flexRender } from "@tanstack/react-table";
+import { ColumnDef, Table, flexRender } from "@tanstack/react-table";
 import {
   TableCell,
   TableRow,
@@ -7,6 +7,10 @@ import {
   TableBody,
   Table as TableMain,
 } from "@/components/ui";
+import { Paginator } from "./Paginator";
+import { useSearchParams } from "next/navigation";
+import { useCustomTable } from "@/lib/hooks";
+import { PaginationData } from "@/models";
 
 export const EmptyRow = ({ colSpan }: { colSpan: number }) => (
   <TableRow>
@@ -17,7 +21,7 @@ export const EmptyRow = ({ colSpan }: { colSpan: number }) => (
 );
 
 export const TableHeaderUI = <T,>({ table }: { table: Table<T> }) => (
-  <TableHeader className="">
+  <TableHeader>
     {table.getHeaderGroups().map((headerGroup) => (
       <TableRow key={headerGroup.id}>
         {headerGroup.headers.map((header) => (
@@ -66,15 +70,29 @@ export const TableBodyUI = <T,>({
   </TableBody>
 );
 
-export const TableUI = <T,>({
-  table,
+export const DataTable = <T,>({
+  data,
+  columns,
   onRowClick,
 }: {
-  table: Table<T>;
+  data: PaginationData<T>;
+  columns: ColumnDef<T, any>[];
   onRowClick?: (row: T) => void;
-}) => (
-  <TableMain className="mx-auto mb-6 w-[98%] bg-white rounded-lg py-10">
-    <TableHeaderUI table={table} />
-    <TableBodyUI table={table} onRowClick={onRowClick} />
-  </TableMain>
-);
+}) => {
+  const params = useSearchParams();
+  const pageIndex = Number(params.get("page")) || 1;
+  const table = useCustomTable(data, columns, pageIndex);
+
+  return (
+    <>
+      <TableMain className="mb-6 bg-white rounded-lg">
+        <TableHeaderUI table={table} />
+        <TableBodyUI table={table} onRowClick={onRowClick} />
+      </TableMain>
+      <Paginator
+        page={table.getState().pagination.pageIndex}
+        lastPage={table.getPageCount()}
+      />
+    </>
+  );
+};

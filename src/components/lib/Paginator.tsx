@@ -49,7 +49,7 @@ export const Paginator = ({
   ];
 
   return (
-    <Pagination>
+    <Pagination className="mt-2">
       <PaginationContent>
         {paginationItems.filter(Boolean).map((item, i) => (
           <PaginationItem key={i}>{item} </PaginationItem>

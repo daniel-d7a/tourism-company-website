@@ -1,6 +1,6 @@
 "use client";
 
-import { truncateText } from "@/lib/utils";
+import { truncateText } from "@/lib/helpers/text";
 import { TourReview } from "@/models";
 import { CellContext } from "@tanstack/react-table";
 import { useState } from "react";

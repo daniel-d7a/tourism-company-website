@@ -17,7 +17,7 @@ export default async function ToursPage({
           <Link href="/dashboard/tours/add">add</Link>
         </Button>
       </div>
-      <div className="my-4">
+      <div className="my-4 mx-4">
         <ToursTable data={data} />
       </div>
     </>

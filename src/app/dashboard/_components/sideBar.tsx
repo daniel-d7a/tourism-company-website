@@ -23,7 +23,7 @@ export const SideBar = () => {
           tours
         </ListItem>
         <ListItem
-          href="/dashboard/transactions"
+          href="/dashboard/reservations"
           Icon={<Banknote {...iconProps} />}
         >
           Reservations

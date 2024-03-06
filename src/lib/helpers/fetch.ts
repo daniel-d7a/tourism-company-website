@@ -1,8 +1,8 @@
-import { PaginationData } from "./../../models/PaginatedResponse";
 import { ApiResponse } from "@/models";
 import { getToken } from "./token";
 import { API_URL, revalidat_interval } from "@/constants/api";
 import { notFound } from "next/navigation";
+import { toast } from "sonner";
 
 async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   const response = await fetch(`${API_URL}${endpoint}`, {
@@ -35,9 +35,7 @@ async function postRequest<TResponse>(
     body: data,
   });
 
-  const responseData: ApiResponse<TResponse> = await response.json();
-
-  return responseData;
+  return await handleResponse<TResponse>(response);
 }
 async function patchRequest<TResponse>(
   endpoint: string,
@@ -54,9 +52,7 @@ async function patchRequest<TResponse>(
     body: data,
   });
 
-  const responseData: ApiResponse<TResponse> = await response.json();
-
-  return responseData;
+  return await handleResponse<TResponse>(response);
 }
 
 async function deleteRequest(endpoint: string) {
@@ -69,7 +65,12 @@ async function deleteRequest(endpoint: string) {
     },
   });
 
-  const responseData: ApiResponse<any> = await response.json();
+  return await handleResponse(response);
+}
+
+async function handleResponse<T>(response: Response) {
+  const responseData: ApiResponse<T> = await response.json();
+  if (responseData.errors) toast.error(responseData.errors);
   return responseData;
 }
 

@@ -1,31 +1,17 @@
-import { truncateText } from "@/lib/utils";
 import { Tour } from "@/models";
 import { createColumnHelper } from "@tanstack/react-table";
 import { DeleteTourButton } from "./DeleteTourButton";
+import { col } from "@/lib/helpers/table";
 
 const columnHelper = createColumnHelper<Tour>();
 
+const tourColumn = col<Tour>;
+
 export const columns = [
-  columnHelper.accessor((row) => row.name, {
-    id: "name",
-    cell: ({ getValue }) => <p>{getValue()}</p>,
-    header: () => <p>Name</p>,
-  }),
-  columnHelper.accessor((row) => row.description, {
-    id: "description",
-    cell: ({ getValue }) => <p>{truncateText(getValue())}</p>,
-    header: () => <p>Description</p>,
-  }),
-  columnHelper.accessor((row) => row.location, {
-    id: "location",
-    cell: ({ getValue }) => <p>{getValue()}</p>,
-    header: () => <p>Location</p>,
-  }),
-  columnHelper.accessor((row) => row.duration, {
-    id: "duration",
-    cell: ({ getValue }) => <p>{getValue()}</p>,
-    header: () => <p>Duration</p>,
-  }),
+  columnHelper.accessor(...tourColumn("name")),
+  columnHelper.accessor(...tourColumn("description", { truncate: true })),
+  columnHelper.accessor(...tourColumn("location")),
+  columnHelper.accessor(...tourColumn("duration")),
   columnHelper.accessor((row) => row.id, {
     id: "actions",
     cell: DeleteTourButton,

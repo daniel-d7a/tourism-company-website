@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .navItem {
-  @apply  hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2;
+  @apply hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2;
 }
 
 .title {
@@ -25,7 +25,6 @@
 .footerIcon {
   @apply md:mx-3 mx-2 text-black md:text-xl text-sm;
 }
-
 
 @layer base {
   :root {
@@ -99,4 +98,26 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* WebKit (Safari, Chrome) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 100px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
