@@ -11,7 +11,7 @@ export const ReviewText = ({ getValue }: CellContext<TourReview, string>) => {
   const displayShowMore = getValue().length > 100;
 
   return (
-    <div>
+    <div className="max-w-72">
       {displayShowMore ? (
         <>
           {showMore ? (

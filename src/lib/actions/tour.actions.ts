@@ -5,10 +5,14 @@ import * as http from "@/lib/helpers/fetch";
 
 const endpoint = "tours";
 
-export async function getTours(page: number = 1) {
+export async function getTours(page: number = 1, query: string = "") {
   return await http.getRequest<PaginationData<Tour>>(
-    `${endpoint}?page=${page}`
+    `${endpoint}?page=${page}&name=${query}`
   );
+}
+
+export async function getTopTours(count: number = 3) {
+  return await http.getRequest<Tour[]>(`${endpoint}/${count}`);
 }
 
 export async function deleteTour(id: number) {

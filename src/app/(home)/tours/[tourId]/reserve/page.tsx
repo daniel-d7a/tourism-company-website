@@ -8,13 +8,15 @@ export default async function Reserve({
 }) {
   const tour = await getSingleTour(Number(tourId));
 
-
   const { options, price } = tour;
 
   return (
     <>
       <section className="capitalize md:px-24 md:pt-28 pt-24 px-10 mb-10">
-        <ReservationForm tourOptions={options} tourPrice={price} />
+        <ReservationForm
+          tourOptions={!!options.length ? options : undefined}
+          tourPrice={price}
+        />
       </section>
     </>
   );

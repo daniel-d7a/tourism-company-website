@@ -22,7 +22,7 @@ export const columns = [
     header: () => <p className="text-center">Rating</p>,
   }),
   // TODO:get tour with reviews
-  columnHelper.accessor((row) => row.stars, {
+  columnHelper.accessor((row) => row.tour?.name, {
     id: "tour name",
     cell: ({ getValue }) => <p className="text-center">{getValue()}</p>,
     header: () => <p className="text-center">Tour name</p>,

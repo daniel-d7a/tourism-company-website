@@ -8,7 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const Paginator = ({
   page,
@@ -18,6 +18,13 @@ export const Paginator = ({
   lastPage: number;
 }) => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+
+  const buildUrl = (value: number) => {
+    params.set("page", value.toString());
+    return `${pathname}?${params.toString()}`;
+  };
 
   // last page = 1 => 1
   // last page = 2 => 1, 2
@@ -35,7 +42,7 @@ export const Paginator = ({
         const value = Math.max(1, i + (page - 1 || 1));
         return (
           <PaginationLink
-            href={`${pathname}?page=${value}`}
+            href={buildUrl(value)}
             isActive={page === value}
             key={i}
           >
@@ -45,7 +52,7 @@ export const Paginator = ({
       }
     ),
     page < lastPage - 1 && lastPage > 3 && <PaginationEllipsis />,
-    page < lastPage && <PaginationNext href={`${pathname}?page=${page + 1}`} />,
+    page < lastPage && <PaginationNext href={buildUrl(page + 1)} />,
   ];
 
   return (

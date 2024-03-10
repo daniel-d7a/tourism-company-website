@@ -12,6 +12,9 @@ import { FaCheck, FaCheckCircle } from "react-icons/fa";
 import { getSingleTour } from "@/lib/actions/tour.actions";
 import { MdCancel, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { FaBed } from "react-icons/fa6";
+import placeholderImg from "@/assets/travelling.jpg";
+import { ReviewForm } from "./_components/form/reviewForm";
+import { cookies } from "next/headers";
 
 export default async function TourPage({
   params: { tourId },
@@ -36,7 +39,13 @@ export default async function TourPage({
     <>
       <div className="md:px-24 md:pt-32 pt-24 px-10 grid md:grid-cols-2 md:gap-3">
         {!media.length ? (
-          ""
+          <Image
+            className="w-full h-auto"
+            src={placeholderImg}
+            width={500}
+            height={50}
+            alt={tour.name}
+          />
         ) : (
           <div className="w-full flex justify-center items-baseline">
             <Carousel className="w-4/5 md:w-full">
@@ -97,7 +106,7 @@ export default async function TourPage({
               {" "}
               <FaCheckCircle color="green" className="mx-2" /> Include
             </h3>
-            <ul className="mx-10 my-1 text-xl">
+            <ul className="mx-10 mt-1 mb-6 text-xl">
               {includes?.map((item, index) => (
                 <div className="flex items-center" key={index}>
                   <FaCheck color="green" />
@@ -116,7 +125,7 @@ export default async function TourPage({
               <MdCancel className="text-red-700 mx-2" />
               Exclude
             </h3>
-            <ul className="mx-10 my-1 text-xl">
+            <ul className="mx-10 mt-1 mb-6 text-xl">
               {excludes?.map((item, index) => (
                 <div className="flex items-center" key={index}>
                   <span className="text-lg font-extrabold text-red-700">x</span>
@@ -133,7 +142,7 @@ export default async function TourPage({
             <h3 className="mt-5 text-2xl bg-gray-300 font-medium rounded-md p-1 flex items-center">
               <FaBed className="mx-2" /> Options
             </h3>
-            <ul className="mx-10 my-1 text-xl">
+            <ul className="mx-10 my-t mb-6 text-xl">
               {options?.map((item, index) => (
                 <div className="flex items-top my-3" key={index}>
                   <MdKeyboardDoubleArrowRight className="mx-2 text-2xl font-semibold" />
@@ -154,6 +163,17 @@ export default async function TourPage({
           </>
         )}
 
+        {cookies().has(`reviewe/tour/${tourId}`) && (
+          <>
+            <h3 className="mt-10 text-3xl font-medium font-lato  my-3 py-3 border-b-2 col-span-2 ">
+              Leave a review
+            </h3>
+            <div className="mb-10">
+              <ReviewForm tour_id={Number(tourId)} />
+            </div>
+          </>
+        )}
+
         {!reviews.length ? (
           ""
         ) : (
@@ -161,31 +181,24 @@ export default async function TourPage({
             <h3 className="mt-10 text-3xl font-medium font-lato  my-3 py-3 border-b-2 col-span-2 ">
               Overall Reviews
             </h3>
-            <div className="mb-10 capitalize grid md:grid-cols-2 gap-3 items-start">
-              <div className="flex items-center">
-                <span className="text-3xl font-bold">5</span>
-                <Image className="mx-2" src={star} alt="rate" width={25} />
-              </div>
-
-              <div>
-                {reviews?.map((item, index) => (
-                  <div className="border-b-2  py-3" key={index}>
+            <div className="mb-10 capitalize items-start">
+              {reviews?.map((item, index) => (
+                <div className="border-b-2 w-2/3 py-3" key={index}>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xl">{item.title}</p>
                     <div className="flex items-center justify-between">
-                      <p className="text-xl">{item.title}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl font-bold">{item.stars}</span>
-                        <Image
-                          className="mx-2 inline"
-                          src={star}
-                          alt="rate"
-                          width={15}
-                        />
-                      </div>
+                      <span className="text-xl font-bold">{item.stars}</span>
+                      <Image
+                        className="mx-2 inline"
+                        src={star}
+                        alt="rate"
+                        width={15}
+                      />
                     </div>
-                    <p className="my-1">{item.body}</p>
                   </div>
-                ))}
-              </div>
+                  <p className="my-1">{item.body}</p>
+                </div>
+              ))}
             </div>
           </>
         )}

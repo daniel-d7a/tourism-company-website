@@ -24,6 +24,10 @@ export const reserveSchema = z.object({
     .max(50, "Max Number of Letters for Name is 50"),
   roomNumber: z.coerce.number().optional(),
   options: z.array(z.custom<TourOption>()).optional(),
+  count: z.coerce
+    .number()
+    .int("number of people must be an integer")
+    .min(1, "number of people cannot be less than 1"),
 });
 
 export type reserveFormData = z.infer<typeof reserveSchema>;

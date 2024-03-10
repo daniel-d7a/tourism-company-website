@@ -1,6 +1,7 @@
 "use client";
 import { Checkbox } from "@/components/ui";
 import { softDeleteReview } from "@/lib/actions/reviews.actions";
+import { toastResponse } from "@/lib/helpers/toast";
 import { TourReview } from "@/models";
 import { CellContext } from "@tanstack/react-table";
 import { useState } from "react";
@@ -16,22 +17,19 @@ export const ShowReview = ({ getValue }: CellContext<TourReview, number>) => {
           e.stopPropagation();
           setIsLoading(true);
           const state = (e.target as HTMLButtonElement).dataset["state"];
-
-          let res;
-
-          if (state !== "checked") {
-            const { success, errors } = await softDeleteReview(
-              Number(getValue())
-            );
-            if (success) {
-              toast.success("Review deleted successfully");
-            } else {
-              toast.error(errors);
-            }
-          }
+          await updateReview(state || "", getValue());
           setIsLoading(false);
         }}
       />
     </div>
   );
 };
+
+async function updateReview(state: string, value: number) {
+  if (state !== "checked") {
+    const res = await softDeleteReview(Number(value));
+    toastResponse(res, "Review hidden successfully");
+  } else if (state === "checked") {
+    // const res = await updateReview
+  }
+}

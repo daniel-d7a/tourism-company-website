@@ -1,0 +1,36 @@
+"use client";
+
+import { Input } from "@/components/ui";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
+import { useDebounce, useDebouncedCallback } from "use-debounce";
+
+export function SearchForm() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (term) {
+      params.set("q", term);
+      params.set("page", "1");
+    } else {
+      params.delete("q");
+    }
+    router.replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
+  return (
+    <Input
+      onChange={(e) => handleSearch(e.target.value)}
+      defaultValue={searchParams.get("q") || ""}
+      type="text"
+      placeholder="Search..."
+      id="search"
+      name="search"
+      className="md:w-2/3 placeholder:px-2 font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2 focus:bg-transparent focus:border-black text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
+    />
+  );
+}

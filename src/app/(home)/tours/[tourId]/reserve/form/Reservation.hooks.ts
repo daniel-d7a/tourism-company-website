@@ -16,6 +16,7 @@ export const useReserveForm = () => {
       hotelName: "",
       roomNumber: undefined,
       options: [],
+      count: 1,
     },
   });
 

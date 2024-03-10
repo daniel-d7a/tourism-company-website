@@ -22,8 +22,7 @@ export function ReservationForm({
   tourOptions?: TourOption[];
   tourPrice: number;
 }) {
-  const { reserveForm, onSubmit, isDirty, isSubmitting, isValid, errors } =
-    useReserveForm();
+  const { reserveForm, onSubmit, isSubmitting, isValid } = useReserveForm();
 
   const [totalPrice, setTotalPrice] = useState<string>(String(tourPrice));
   const calculateTotalPrice = () => {
@@ -128,6 +127,23 @@ export function ReservationForm({
               </FormItem>
             )}
           />
+          <FormField
+            control={reserveForm.control}
+            name="count"
+            render={({ field }) => (
+              <FormItem className="mt-3">
+                <FormLabel>no. of people </FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder="Enter no. of people"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {tourOptions && (
             <FormField
               control={reserveForm.control}
@@ -173,12 +189,12 @@ export function ReservationForm({
             />
           )}
 
-          <FormLabel className="text-xl my-10">
+          <div className="text-xl font-semibold mt-6">
             total price : {totalPrice} $
-          </FormLabel>
+          </div>
         </div>
         <button
-          disabled={!isDirty || !isValid}
+          disabled={!isValid}
           className="disabled:bg-gray-600 md:col-span-2 md:w-1/3 text-2xl flex justify-center font-medium mx-auto  px-5 py-2 rounded-md text-white bg-secondary-foreground transition duration-300 ease-in-out hover:bg-secondary"
           type="submit"
         >

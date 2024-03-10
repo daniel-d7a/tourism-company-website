@@ -14,7 +14,10 @@ async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
     ...options,
   });
 
-  if (!response.ok) notFound();
+  if (!response.ok) {
+    console.log(await response.json());
+    notFound();
+  }
 
   const responseData: ApiResponse<TResponse> = await response.json();
   return responseData.data as TResponse;
