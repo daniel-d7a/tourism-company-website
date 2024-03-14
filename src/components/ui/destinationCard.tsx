@@ -2,9 +2,10 @@ import Image from "next/image";
 import { Tour } from "@/models";
 import { FaArrowRight } from "react-icons/fa6";
 import placeholderImg from "@/assets/travelling.jpg";
+import Link from "next/link";
 
 export function DestinationCard({
-  tour: { description, name, media },
+  tour: { description, name, media,id },
 }: {
   tour: Tour;
 }) {
@@ -16,15 +17,21 @@ export function DestinationCard({
         className="lg:h-48 md:h-40 w-full object-cover object-center hover:scale-105 transition duration-500 cursor-pointer"
         src={img}
         alt={name}
+        width={200}
+        height={100}
       />
       <h5 className="text-2xl m-3 font-semibold text-secondary-foreground">
         {name}
       </h5>
       <p className="m-2">{description}</p>
-      <button className="button my-5 mx-auto flex items-center justify-center ">
-        Learn more
-        <FaArrowRight className="mx-2" />
-      </button>
+      <Link
+        href={`/tours/${id}`}
+        className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
+      >
+        Learn More
+        <FaArrowRight className="mx-3" />
+      </Link>
+    
     </div>
   );
 }

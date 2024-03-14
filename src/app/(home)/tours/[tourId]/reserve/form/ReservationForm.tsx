@@ -11,20 +11,29 @@ import {
   Checkbox,
   Input,
 } from "@/components/ui";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useReserveForm } from "./Reservation.hooks";
 import { TourOption } from "@/models";
+import { Payment } from "@/models/Payment";
+import Image from "next/image";
 import { useState } from "react";
 
 export function ReservationForm({
   tourOptions,
   tourPrice,
+  paymentMethods,
+  tourId
+
 }: {
   tourOptions?: TourOption[];
   tourPrice: number;
+  tourId: number;
+  paymentMethods: Payment[]
 }) {
-  const { reserveForm, onSubmit, isSubmitting, isValid } = useReserveForm();
 
+  const { reserveForm, onSubmit, isSubmitting, isValid } = useReserveForm(tourId);
   const [totalPrice, setTotalPrice] = useState<string>(String(tourPrice));
+
   const calculateTotalPrice = () => {
     let total: number = Number(0);
     const options = reserveForm.getValues().options as TourOption[] | undefined;
@@ -33,14 +42,13 @@ export function ReservationForm({
     });
     total += Number(tourPrice);
     setTotalPrice(total.toFixed(2));
-    console.log(reserveForm.formState.errors);
-    console.log(isValid);
   };
+
 
   return (
     <Form {...reserveForm}>
-      <form onSubmit={onSubmit} className="grid md:grid-cols-2 gap-5">
-        <div className="space-y-3">
+      <form onSubmit={onSubmit} className="flex flex-col items-center justify-center">
+        <div className="lg:w-3/4 w-full space-y-4">
           <FormField
             control={reserveForm.control}
             name="name"
@@ -58,78 +66,106 @@ export function ReservationForm({
               </FormItem>
             )}
           />
+          <div className="w-full flex">
+            <div className="flex-1 mr-4">
+              <FormField
+                control={reserveForm.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center">
+                      <FormLabel>Email</FormLabel>
+                      <span className="text-sm text-red-600 mx-1">*</span>
+                    </div>
+                    <FormControl>
+                      <Input required placeholder="Enter your Email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex-1">
+              <FormField
+                control={reserveForm.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center">
+                      <FormLabel>phone</FormLabel>
+                      <span className="text-sm text-red-600 mx-1">*</span>
+                    </div>
+                    <FormControl>
+                      <Input required placeholder="Enter your phone" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
           <FormField
             control={reserveForm.control}
-            name="email"
+            name="city"
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>city</FormLabel>
                   <span className="text-sm text-red-600 mx-1">*</span>
                 </div>
                 <FormControl>
-                  <Input required placeholder="Enter your Email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={reserveForm.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center">
-                  <FormLabel>phone</FormLabel>
-                  <span className="text-sm text-red-600 mx-1">*</span>
-                </div>
-                <FormControl>
-                  <Input required placeholder="Enter your phone" {...field} />
+                  <Input required placeholder="Enter your City" {...field} />
                 </FormControl>
 
                 <FormMessage />
               </FormItem>
             )}
           />
-          <FormField
-            control={reserveForm.control}
-            name="hotelName"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex items-center">
-                  <FormLabel>Hotel Name</FormLabel>
-                  <span className="text-sm text-red-600 mx-1">*</span>
-                </div>
-                <FormControl>
-                  <Input
-                    required
-                    placeholder="Enter your Hotel Name"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+          <div className="w-full flex">
+            <div className="flex-1 mr-4">
 
-        <div className="md:ml-20">
+              <FormField
+                control={reserveForm.control}
+                name="hotel_name"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center">
+                      <FormLabel>Hotel Name</FormLabel>
+                      <span className="text-sm text-red-600 mx-1">*</span>
+                    </div>
+                    <FormControl>
+                      <Input
+                        required
+                        placeholder="Enter your Hotel Name"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex-1">
+              <FormField
+                control={reserveForm.control}
+                name="room_uid"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Room Number</FormLabel>
+                    <span className="text-sm text-red-600 mx-1">*</span>
+                    <FormControl>
+                      <Input placeholder="Enter your Room Number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
           <FormField
             control={reserveForm.control}
-            name="roomNumber"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Room Number</FormLabel>
-                <FormControl>
-                  <Input placeholder="Enter your Room Number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={reserveForm.control}
-            name="count"
+            name="num_people"
             render={({ field }) => (
               <FormItem className="mt-3">
                 <FormLabel>no. of people </FormLabel>
@@ -150,7 +186,7 @@ export function ReservationForm({
               name="options"
               render={({ field }) => (
                 <FormItem className="mb-4 my-2">
-                  <FormLabel>Select the items you want</FormLabel>
+                  <FormLabel>Select options you want</FormLabel>
                   {tourOptions?.map((item, index) => (
                     <div key={index} className="flex flex-row">
                       <FormControl>
@@ -162,14 +198,14 @@ export function ReservationForm({
                           onCheckedChange={(checked) => {
                             let result = checked
                               ? field.onChange([
-                                  ...(field.value as TourOption[]),
-                                  item,
-                                ])
+                                ...(field.value as TourOption[]),
+                                item,
+                              ])
                               : field.onChange(
-                                  (field.value as TourOption[]).filter(
-                                    (value) => value.name !== item.name
-                                  )
-                                );
+                                (field.value as TourOption[]).filter(
+                                  (value) => value.name !== item.name
+                                )
+                              );
                             calculateTotalPrice();
                             return result;
                           }}
@@ -189,16 +225,55 @@ export function ReservationForm({
             />
           )}
 
-          <div className="text-xl font-semibold mt-6">
+          {
+            paymentMethods.length > 0
+            && <FormField
+              control={reserveForm.control}
+              name="payment_method_id"
+              render={({ field }) => (
+                <FormItem className="mt-3">
+                  <FormLabel>Payment Methods</FormLabel>
+                  <span className="text-sm text-red-600 mx-1">*</span>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      className="flex flex-col space-y-1"
+                    >
+                      {paymentMethods.map((item) => (
+                        <FormItem key={item.paymentId}>
+                          <FormControl>
+                            <RadioGroupItem value={String(item.paymentId)} />
+                          </FormControl>
+                          <FormLabel className="font-medium mx-2">
+                            {item.name_en}
+                          </FormLabel>
+
+                          <div className="block ml-10">
+                            <Image src={item.logo} alt={item.name_en}
+                              width={130} height={300} />
+                          </div>
+                        </FormItem>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+          }
+
+          <div className="text-2xl font-semibold">
             total price : {totalPrice} $
           </div>
         </div>
+
         <button
           disabled={!isValid}
-          className="disabled:bg-gray-600 md:col-span-2 md:w-1/3 text-2xl flex justify-center font-medium mx-auto  px-5 py-2 rounded-md text-white bg-secondary-foreground transition duration-300 ease-in-out hover:bg-secondary"
+          className="disabled:bg-gray-600 md:w-1/3 text-2xl flex justify-center items-center font-medium mx-auto mt-10 px-5 py-2 rounded-md text-white bg-secondary-foreground transition duration-300 ease-in-out hover:bg-secondary"
           type="submit"
         >
-          {!isSubmitting ? "Continue" : <LoadingSpinner className="size-7" />}
+          {!isSubmitting ? "Continue" : <LoadingSpinner className="size-7 mx-4" />}
         </button>
       </form>
     </Form>

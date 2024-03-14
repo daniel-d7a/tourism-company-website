@@ -1,4 +1,5 @@
 import { Footer, Nav } from "@/components/layout";
+import { Toaster } from "@/components/ui";
 
 export default function HomeLayout({
   children,
@@ -9,6 +10,7 @@ export default function HomeLayout({
     <div>
       <Nav />
       {children}
+      <Toaster />
       <Footer />
     </div>
   );

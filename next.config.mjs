@@ -8,6 +8,7 @@ const nextConfig = {
         // port: "8000",
       },
     ],
+    domains: ["staging.fawaterk.com"],
   },
 };
 

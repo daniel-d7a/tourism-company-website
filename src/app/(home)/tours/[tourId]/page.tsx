@@ -183,7 +183,7 @@ export default async function TourPage({
             </h3>
             <div className="mb-10 capitalize items-start">
               {reviews?.map((item, index) => (
-                <div className="border-b-2 w-2/3 py-3" key={index}>
+                <div className="border-b-2 py-3" key={index}>
                   <div className="flex items-center justify-between">
                     <p className="text-xl">{item.title}</p>
                     <div className="flex items-center justify-between">
