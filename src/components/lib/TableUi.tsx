@@ -26,7 +26,7 @@ export const TableHeaderUI = <T,>({ table }: { table: Table<T> }) => (
       <TableRow key={headerGroup.id}>
         {headerGroup.headers.map((header) => (
           <TableHead
-            className="pt-4 pb-2 text-blue-400 text-base"
+            className="pt-4 pb-2 text-primary-foreground text-base"
             key={header.id}
           >
             {header.isPlaceholder

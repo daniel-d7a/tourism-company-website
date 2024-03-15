@@ -8,7 +8,7 @@ export default function DashboardRootLayout({
     <>
       <div className="min-h-screen flex ">
         <SideBar />
-        <div className="relative left-60 w-[calc(100%-15rem)] bg-slate-200">
+        <div className="relative left-52 w-[calc(100%-13rem)] bg-slate-200">
           {children}
         </div>
       </div>

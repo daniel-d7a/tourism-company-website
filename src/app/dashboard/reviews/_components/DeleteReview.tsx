@@ -16,12 +16,11 @@ export function DeleteReview({ getValue }: CellContext<TourReview, number>) {
       onClick={async (e) => {
         e.stopPropagation();
         setIsLoading(true);
-        const { errors, success } = await forceDeleteReview(Number(getValue()));
-
-        if (success) {
+        const res = await forceDeleteReview(Number(getValue()));
+        if (res.success) {
           toast.success("Review deleted successfully");
         } else {
-          toast.error(errors);
+          toast.error("Error deleting review");
         }
         setIsLoading(false);
       }}

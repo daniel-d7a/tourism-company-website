@@ -2,12 +2,11 @@ import { Paginator } from "@/components/lib";
 import { TourCard } from "@/components/ui";
 import { getTours } from "@/lib/actions/tour.actions";
 import { SearchForm } from "./_components/searchForm";
+import { PageParams } from "@/models";
 
 export default async function Tours({
   searchParams: { page = 1, q = "" },
-}: {
-  searchParams: { page: number; q: string };
-}) {
+}: PageParams) {
   const data = await getTours(page, q);
   const toursArray = data.data;
 

@@ -2,7 +2,7 @@ import { getReservations } from "@/lib/actions/reservations.actions";
 import { ReservationsTable } from "./_components/ReservationTable";
 
 export default async function ReservationsPage({
-  searchParams: { page = 1 },
+  searchParams: { page = 1, },
 }: {
   searchParams: { page: number };
 }) {

@@ -15,7 +15,6 @@ async function getRequest<TResponse>(endpoint: string, options?: RequestInit) {
   });
 
   if (!response.ok) {
-    console.log(await response.json());
     notFound();
   }
 
@@ -72,8 +71,17 @@ async function deleteRequest(endpoint: string) {
 }
 
 async function handleResponse<T>(response: Response) {
-  const responseData: ApiResponse<T> = await response.json();
-  if (responseData.errors) toast.error(responseData.errors);
+  let responseData: ApiResponse<T>;
+
+  try {
+    responseData = await response.json();
+    if (responseData.errors) toast.error(responseData.errors);
+  } catch (error) {
+    responseData = {
+      success: true,
+      message: "Empty response",
+    } as ApiResponse<T>;
+  }
   return responseData;
 }
 

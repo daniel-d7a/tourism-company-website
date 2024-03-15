@@ -8,9 +8,9 @@ import { cookies } from "next/headers";
 
 const endpoint = "reviews";
 
-export async function getReviews(page: number) {
+export async function getReviews(page: number, query: string = "") {
   return await http.getRequest<PaginationData<TourReview>>(
-    `${endpoint}?page=${page}`
+    `${endpoint}?page=${page}&title=${query}`
   );
 }
 
@@ -19,7 +19,7 @@ export async function getSingleReview(id: number) {
 }
 
 export async function forceDeleteReview(id: number) {
-  const res = await http.deleteRequest(`${endpoint}/${id}/destroy`);
+  const res = await http.deleteRequest(`${endpoint}/force/${id}`);
 
   if (res.success) {
     revalidatePath("/dashboard/reviews");

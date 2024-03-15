@@ -163,7 +163,7 @@ export default async function TourPage({
           </>
         )}
 
-        {cookies().has(`reviewe/tour/${tourId}`) && (
+        {!cookies().has(`reviewe/tour/${tourId}`) && (
           <>
             <h3 className="mt-10 text-3xl font-medium font-lato  my-3 py-3 border-b-2 col-span-2 ">
               Leave a review

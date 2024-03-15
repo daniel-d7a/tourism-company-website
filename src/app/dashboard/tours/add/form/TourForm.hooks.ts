@@ -72,10 +72,6 @@ export const useTourForm = (tourData?: Tour) => {
       }
     });
 
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
-
     if (tourData) {
       result = await updateTour(tourData.id, formData);
     } else {

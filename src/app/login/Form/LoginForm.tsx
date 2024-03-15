@@ -29,7 +29,7 @@ export const LoginForm = () => {
     const userData = await login(data);
     if (userData.success) {
       toast.success("Login Successful");
-      router.push("/dashboard");
+      router.push("/dashboard/tours");
     } else {
       form.setError("root", {
         type: "custom",
@@ -70,7 +70,7 @@ export const LoginForm = () => {
           />
         </div>
         {form.formState.errors.root && (
-          <p className=" text-sm font-medium text-red-500 dark:text-red-900 w-full text-center bg-red-100 p-2 rounded-md">
+          <p className=" text-sm font-medium text-red-500 dark:text-red-900 w-full text-center  p-2 rounded-md">
             {form.formState.errors.root.message}
           </p>
         )}
