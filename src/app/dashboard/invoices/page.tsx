@@ -10,15 +10,17 @@ export default async function InvoicesPage({
 
   return (
     <>
-      <div className="text-2xl font-semibold h-20 shadow-md py-4 px-4 ml-0.5 bg-white flex  items-center justify-between">
-        Invoices
-        <div className="w-2/3 mx-auto">
-          <SearchForm placeholder="search by invoice number..." />
+      <main className="min-h-screen">
+        <div className="bg-white mx-2 my-4 rounded-md shadow-md text-2xl font-semibold py-4 px-4 flex  items-center justify-between">
+          Invoices
+          <div className="w-2/3 mx-auto">
+            <SearchForm placeholder="Search by invoice number..." />
+          </div>
         </div>
-      </div>
-      <div className="my-4 mx-4">
-        <ReservationsTable data={data} />
-      </div>
+        <div className="m-2">
+          <ReservationsTable data={data} />
+        </div>
+      </main>
     </>
   );
 }

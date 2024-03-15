@@ -10,15 +10,17 @@ export default async function page({
 
   return (
     <>
-      <div className="text-2xl font-semibold py-4 px-4 ml-0.5 bg-white flex  items-center justify-between">
-        Reviews
-        <div className="w-2/3 mx-auto">
-          <SearchForm />
+      <main className="min-h-screen">
+        <div className="bg-white mx-2 my-4 rounded-md shadow-md text-2xl font-semibold py-4 px-4 flex  items-center justify-between">
+          Reviews
+          <div className="w-2/3 mx-auto">
+            <SearchForm />
+          </div>
+        </div>{" "}
+        <div className="m-2">
+          <ReviewsTable data={reviews} />
         </div>
-      </div>
-      <div className="mt-4 mx-4">
-        <ReviewsTable data={reviews} />
-      </div>
+      </main>
     </>
   );
 }

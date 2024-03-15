@@ -85,14 +85,18 @@ export const DataTable = <T,>({
 
   return (
     <>
-      <TableMain className="mb-6 bg-white rounded-lg">
+      <TableMain className="mb-2 bg-white rounded-lg shadow-md">
         <TableHeaderUI table={table} />
         <TableBodyUI table={table} onRowClick={onRowClick} />
       </TableMain>
-      <Paginator
-        page={table.getState().pagination.pageIndex}
-        lastPage={table.getPageCount()}
-      />
+      {table.getPageCount() !== 1 && (
+        <div className="shadow-md bg-white py-2 pb-4 rounded-md mb-4">
+          <Paginator
+            page={table.getState().pagination.pageIndex}
+            lastPage={table.getPageCount()}
+          />
+        </div>
+      )}
     </>
   );
 };

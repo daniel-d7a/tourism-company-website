@@ -11,18 +11,20 @@ export default async function ToursPage({
   const data = await getTours(page, q);
   return (
     <>
-      <div className="text-2xl font-semibold h-20 shadow-md py-4 px-4 bg-white flex  items-center justify-between">
-        Tours
-        <div className="w-2/3 mx-auto">
-          <SearchForm />
+      <main className="min-h-screen">
+        <div className="bg-white mx-2 my-4 rounded-md shadow-md text-2xl font-semibold py-4 px-4 flex  items-center justify-between">
+          Tours
+          <div className="w-2/3 mx-auto">
+            <SearchForm />
+          </div>
+          <Button>
+            <Link href="/dashboard/tours/add">add</Link>
+          </Button>
+        </div>{" "}
+        <div className="m-2">
+          <ToursTable data={data} />
         </div>
-        <Button>
-          <Link href="/dashboard/tours/add">add</Link>
-        </Button>
-      </div>
-      <div className="my-4 mx-4">
-        <ToursTable data={data} />
-      </div>
+      </main>
     </>
   );
 }
