@@ -5,9 +5,11 @@ import logo from "@/assets/logo.png";
 import { IoMdMenu } from "react-icons/io";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export function Nav() {
   const [navHidden, setNavHidden] = useState(true);
+  const pathname = usePathname();
 
   const links = [
     {
@@ -28,43 +30,51 @@ export function Nav() {
     },
   ];
 
+  ;
+
+
   return (
     <>
-      <header className="w-screen text-black bg-white shadow-md fixed z-50 flex justify-between items-center md:px-16 px-8 md:py-0 py-2">
-        <Link
-          href="/"
-          className="md:w-1/3 w-1/6 flex font-medium items-center text-white"
-        >
-          <Image src={logo} alt="logo" width={100} height={50} />
-        </Link>
+      <header className="w-full flex justify-center mt-5 z-10 fixed">
+        <div className="w-2/3 bg-gray-300 bg-opacity-75 flex items-center justify-around px-1 md:px-5 rounded-full">
+          <Link
+            href="/"
+            className="w-1/3 flex font-medium items-center text-white"
+          >
+            <Image src={logo} alt="logo" width={60} />
+          </Link>
 
-        <nav className="hidden  md:text-xl md:space-x-4 md:w-1/3 w-3/4 ml-auto md:flex items-center justify-around md:justify-center">
-          {links.map((link) => (
-            <Link className="navItem" href={link.href} key={link.href}>
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+          <nav className="hidden md:text-xl md:space-x-3 ml-auto md:flex items-center justify-center">
+            {links.map((link) => (
+              <Link className={`hover:border-b-2 border-primary-foreground ${pathname === link.href ? 'border-b-2' : ''
+                }`}
+                href={link.href} key={link.href}>
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="block md:hidden">
-          <IoMdMenu
-            color="black"
-            size={22}
-            onClick={() => setNavHidden(!navHidden)}
-          />
+          <div className="block md:hidden">
+            <IoMdMenu
+              color="black"
+              size={25}
+              onClick={() => setNavHidden(!navHidden)}
+            />
+          </div>
+
         </div>
-      </header>
+      </header >
 
       <div
         className={cn(
-          "w-full z-40 divide-y-2 py-2 absolute top-14 left-0 transition-all flex flex-col bg-white space-y-2 justify-center",
+          "w-full z-40 divide-y p-3 absolute top-20 left-0 transition-all flex flex-col bg-gray-300 space-y-2 justify-center",
           navHidden ? "-translate-y-96" : "-translate-y-0"
         )}
       >
         {links.map((link) => (
           <Link
             onClick={() => setNavHidden(true)}
-            className="text-center"
+            className={`text-center`}
             href={link.href}
             key={link.href}
           >

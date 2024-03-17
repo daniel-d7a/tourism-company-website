@@ -2,13 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.navItem {
-  @apply hover:bg-primary-foreground transition-all hover:text-white font-medium rounded py-1 px-2;
-}
 
-.title {
-  @apply my-5 text-5xl font-semibold font-playfair;
-}
 
 .icon {
   @apply w-1/4 h-auto text-center font-light;

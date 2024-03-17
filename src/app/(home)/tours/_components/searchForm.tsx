@@ -16,21 +16,26 @@ export function SearchForm() {
     if (term) {
       params.set("q", term);
       params.set("page", "1");
+      router.replace(`${pathname}?${params.toString()}`);
     } else {
       params.delete("q");
+      router.replace(`${pathname}?${params.toString()}`);
     }
-    router.replace(`${pathname}?${params.toString()}`);
   }, 300);
+  const navigate = useDebouncedCallback((value: string) => {
+    router.replace(`/tours`);
+  }, 200)
 
   return (
     <Input
       onChange={(e) => handleSearch(e.target.value)}
+      onFocus={(e) => navigate(e.target.value)}
       defaultValue={searchParams.get("q") || ""}
       type="text"
       placeholder="Search..."
       id="search"
       name="search"
-      className="md:w-2/3 placeholder:px-2 font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2 focus:bg-transparent focus:border-black text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
+      className="md:w-2/3 placeholder:px-2  font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2 focus:bg-transparent focus:border-black text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out"
     />
   );
 }
