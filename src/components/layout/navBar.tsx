@@ -26,7 +26,7 @@ export function Nav() {
     },
     {
       name: "dashboard",
-      href: "/dashboard",
+      href: "/dashboard/tours",
     },
   ];
 

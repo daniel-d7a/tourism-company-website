@@ -8,7 +8,7 @@ export default function NotFound() {
       <p className="capitalize text-center text-xl">
         the page you are trying to visit is not found, try again later
       </p>
-      <Link href="/dashboard" className="mt-4 text-lg">
+      <Link href="/dashboard/tours" className="mt-4 text-lg">
         <Button className="bg-black capitalize hover:text-black hover:border-black hover:border-2">
           go home
         </Button>

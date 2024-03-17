@@ -55,6 +55,8 @@ export const Paginator = ({
     page < lastPage && <PaginationNext href={buildUrl(page + 1)} />,
   ];
 
+  if (paginationItems.filter(Boolean).length < 2) return null;
+
   return (
     <Pagination className="mt-2">
       <PaginationContent>

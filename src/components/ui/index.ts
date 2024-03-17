@@ -12,3 +12,4 @@ export * from "./sonner";
 export * from "./table";
 export * from "./textarea";
 export * from "./tourCard";
+export * from "./dialog";

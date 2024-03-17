@@ -29,4 +29,5 @@ export type TourReview = {
   tour_id: number;
   id: number;
   tour?: Tour;
+  deleted_at: string | null;
 };

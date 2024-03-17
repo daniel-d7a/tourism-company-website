@@ -13,17 +13,14 @@ export const ListItem = ({
   Icon: JSX.Element;
 }) => {
   const pathname = usePathname();
-  const active =
-    href === "/dashboard"
-      ? pathname === "/dashboard"
-      : pathname.startsWith(href);
+  const active = pathname.startsWith(href);
 
   return (
     <li>
       <Link
         className={cn(
-          "flex gap-6 items-center capitalize text-lg px-4 py-2 rounded-lg hover:text-main-blue hover:bg-blue-100 transition-all",
-          active && "text-main-blue bg-blue-100"
+          "flex gap-6 items-center capitalize text-lg px-4 py-2 rounded-lg hover:text-primary-foreground hover:bg-blue-50 transition-all",
+          active && "text-primary-foreground"
         )}
         href={href}
       >

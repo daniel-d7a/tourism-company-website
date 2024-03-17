@@ -55,7 +55,7 @@ export const useReserveForm = (tour_id: number) => {
       payment_method_id: data.payment_method_id,
       room_uid: data.room_uid,
       // room_uid: data.room_uid !== undefined ? data.room_uid : "",
-      payment_number: "01127730475",
+      payment_number: "01551937083",
       currency: "USD",
       date: formattedDate,
     });
