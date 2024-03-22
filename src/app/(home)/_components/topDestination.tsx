@@ -17,7 +17,7 @@ export async function TopDestination() {
       </section>
       <section className="w-5/6 m-5 mx-auto md:flex flex-col items-center justify-around">
         <p className="text-primary-foreground text-sm uppercase font-semibold">Trend</p>
-        <h3 className="text-4xl font-semibold my-3">Our Trending Tours</h3>
+        <h3 className="text-4xl font-semibold my-3 text-center">Our Trending Tours</h3>
         <div className="grid md:grid-cols-3 gap-8">
           {tours.data.slice(0, 3).map((item, index) => (
             <DestinationCard key={index} tour={item} />

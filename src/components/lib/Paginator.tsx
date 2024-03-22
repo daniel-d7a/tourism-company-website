@@ -17,6 +17,7 @@ export const Paginator = ({
   page: number;
   lastPage: number;
 }) => {
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
@@ -52,7 +53,7 @@ export const Paginator = ({
       }
     ),
     page < lastPage - 1 && lastPage > 3 && <PaginationEllipsis />,
-    page < lastPage && <PaginationNext href={buildUrl(page + 1)} />,
+    page < lastPage && <PaginationNext href={buildUrl(Number(page) + 1)} />,
   ];
 
   if (paginationItems.filter(Boolean).length < 2) return null;

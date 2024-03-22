@@ -36,7 +36,7 @@ export function Nav() {
   return (
     <>
       <header className="w-full flex justify-center mt-5 z-10 fixed">
-        <div className="w-2/3 bg-gray-300 bg-opacity-75 flex items-center justify-around px-1 md:px-5 rounded-full">
+        <div className="w-2/3 bg-gray-300 flex items-center justify-around px-1 md:px-5 rounded-full">
           <Link
             href="/"
             className="w-1/3 flex font-medium items-center text-white"
@@ -63,25 +63,26 @@ export function Nav() {
           </div>
 
         </div>
-      </header >
 
-      <div
-        className={cn(
-          "w-full z-40 divide-y p-3 absolute top-20 left-0 transition-all flex flex-col bg-gray-300 space-y-2 justify-center",
-          navHidden ? "-translate-y-96" : "-translate-y-0"
-        )}
-      >
-        {links.map((link) => (
-          <Link
-            onClick={() => setNavHidden(true)}
-            className={`text-center`}
-            href={link.href}
-            key={link.href}
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div>
+
+        <div
+          className={cn(
+            "w-full z-40 divide-y-4 p-3 absolute top-16 left-0 rounded-xl transition-all flex flex-col bg-gray-300 space-y-2 justify-center",
+            navHidden ? "-translate-y-96" : "-translate-y-0"
+          )}
+        >
+          {links.map((link) => (
+            <Link
+              onClick={() => setNavHidden(true)}
+              className={`text-center`}
+              href={link.href}
+              key={link.href}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      </header >
     </>
   );
 }

@@ -33,10 +33,10 @@ export function DestinationCard({
           <h6>{location.split("\n")[1].split(",")[0]}</h6>
         </div>
       </div>
-      <h5 className="text-2xl my-2 font-semibold text-secondary-foreground">
+      <h5 className="text-2xl mb-2 font-semibold text-secondary-foreground">
         {name}
       </h5>
-      <p className="text-base my-4">{description}</p>
+      <p className="text-base mb-5">{description}</p>
       <Link
         href={`/tours/${id}`}
         className="text-indigo-500 inline-flex items-center"

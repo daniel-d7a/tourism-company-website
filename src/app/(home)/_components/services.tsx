@@ -39,9 +39,9 @@ export function Services() {
   return (
     <section className="mt-20 flex-col items-center justify-center">
       <p className="text-primary-foreground text-center text-sm uppercase font-semibold">category</p>
-      <h2 className=" text-center text-4xl font-semibold capitalize my-8">we offer the best services</h2>
+      <h2 className="text-center text-4xl font-semibold capitalize my-5">we offer the best services</h2>
 
-      <div className="w-2/3 mx-auto md:flex">
+      <div className="w-5/6 mx-auto md:flex my-5">
         {info.map((item, index) => (
           <div key={index} className="flex flex-col text-center items-center p-5">
             <div className="flex justify-center text-5xl">

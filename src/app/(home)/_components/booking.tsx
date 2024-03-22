@@ -25,7 +25,7 @@ export default function Booking() {
     <section className="w-5/6 mt-5 mx-auto md:flex items-center justify-around">
       <div className="w-full md:w-1/3 flex flex-col items-start">
         <p className="text-primary-foreground text-sm uppercase font-semibold">Fast & Easy</p>
-        <h2 className="text-4xl font-semibold my-3" >Get Your Favorite Resort Bookings</h2>
+        <h2 className="text-4xl font-semibold my-5 text-center" >Get Your Favorite Resort Bookings</h2>
         <div>
           {
             arr.map((item, index) => (
