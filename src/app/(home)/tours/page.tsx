@@ -23,17 +23,24 @@ export default async function Tours({
   );
 
   return (
-
     <section className="min-h-screen w-full flex flex-col justify-center items-center">
       <div className="relative w-full">
         <div className="w-full flex items-center justify-center absolute top-[6rem] md:top-1/3 left-1/2 transform -translate-x-1/2 z-10">
           <div className="text-white flex flex-col items-center w-2/3">
             <p className="text-sm uppercase font-semibold">Search Tour</p>
-            <h2 className="text-3xl md:text-4xl font-semibold my-3 text-center capitalize">travel with us</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold my-3 text-center capitalize">
+              travel with us
+            </h2>
             <SearchForm />
           </div>
         </div>
-        <Image src={img} alt="img" width={800} height={200} className="w-full min-h-[15rem] md:min-h-[23rem]" />
+        <Image
+          src={img}
+          alt="img"
+          width={800}
+          height={200}
+          className="w-full min-h-[15rem] md:min-h-[23rem]"
+        />
       </div>
 
       <div className="relative md:-top-[5rem] bg-white py-5 px-5 rounded shadow w-5/6 mx-auto">
@@ -43,8 +50,6 @@ export default async function Tours({
         </div>
       </div>
     </section>
-
-
   );
 }
 

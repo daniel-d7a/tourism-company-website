@@ -52,7 +52,7 @@ export function TourCard({ tour }: { tour: Tour }) {
 
         <div className="flex items-center justify-between flex-wrap ">
           <Link
-            href={`/tours/${tour.id}`}
+            href={`/tours/${tour.id}?tab=info`}
             className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
           >
             Learn More

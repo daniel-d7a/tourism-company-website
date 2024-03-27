@@ -1,4 +1,9 @@
-import { Inter as FontSans, Playfair_Display, Lato } from "next/font/google";
+import {
+  Inter as FontSans,
+  Playfair_Display,
+  Lato,
+  Yesteryear,
+} from "next/font/google";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -12,6 +17,11 @@ export const playfairDisplay = Playfair_Display({
 
 export const lato = Lato({
   subsets: ["latin"],
-  weight: ['400'],
+  weight: ["400"],
   variable: "--lato",
+});
+export const yesteryear = Yesteryear({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--yesteryear",
 });
