@@ -5,6 +5,8 @@ import { SearchForm } from "./_components/searchForm";
 import { PageParams } from "@/models";
 import Image from "next/image";
 import img from "@/assets/img.png";
+import { cn } from "@/lib/utils";
+import { yesteryear } from "@/lib/fonts";
 
 export default async function Tours({
   searchParams: { page = 1, q = "" },
@@ -28,7 +30,12 @@ export default async function Tours({
         <div className="w-full flex items-center justify-center absolute top-[6rem] md:top-1/3 left-1/2 transform -translate-x-1/2 z-10">
           <div className="text-white flex flex-col items-center w-2/3">
             <p className="text-sm uppercase font-semibold">Search Tour</p>
-            <h2 className="text-3xl md:text-4xl font-semibold my-3 text-center capitalize">
+            <h2
+              className={cn(
+                "text-3xl md:text-5xl font-semibold my-3 text-center capitalize",
+                yesteryear.className
+              )}
+            >
               travel with us
             </h2>
             <SearchForm />

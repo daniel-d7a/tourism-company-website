@@ -10,6 +10,7 @@ import {
   LoadingSpinner,
   Checkbox,
   Input,
+  Button,
 } from "@/components/ui";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useReserveForm } from "./Reservation.hooks";
@@ -22,16 +23,15 @@ export function ReservationForm({
   tourOptions,
   tourPrice,
   paymentMethods,
-  tourId
-
+  tourId,
 }: {
   tourOptions?: TourOption[];
   tourPrice: number;
   tourId: number;
-  paymentMethods: Payment[]
+  paymentMethods: Payment[];
 }) {
-
-  const { reserveForm, onSubmit, isSubmitting, isValid } = useReserveForm(tourId);
+  const { reserveForm, onSubmit, isSubmitting, isValid } =
+    useReserveForm(tourId);
   const [totalPrice, setTotalPrice] = useState<string>(String(tourPrice));
 
   const calculateTotalPrice = () => {
@@ -44,10 +44,12 @@ export function ReservationForm({
     setTotalPrice(total.toFixed(2));
   };
 
-
   return (
     <Form {...reserveForm}>
-      <form onSubmit={onSubmit} className="flex flex-col items-center justify-center">
+      <form
+        onSubmit={onSubmit}
+        className="flex flex-col items-center justify-center"
+      >
         <div className="lg:w-3/4 w-full space-y-4">
           <FormField
             control={reserveForm.control}
@@ -78,7 +80,11 @@ export function ReservationForm({
                       <span className="text-sm text-red-600 mx-1">*</span>
                     </div>
                     <FormControl>
-                      <Input required placeholder="Enter your Email" {...field} />
+                      <Input
+                        required
+                        placeholder="Enter your Email"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -96,7 +102,11 @@ export function ReservationForm({
                       <span className="text-sm text-red-600 mx-1">*</span>
                     </div>
                     <FormControl>
-                      <Input required placeholder="Enter your phone" {...field} />
+                      <Input
+                        required
+                        placeholder="Enter your phone"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,7 +134,6 @@ export function ReservationForm({
           />
           <div className="w-full flex">
             <div className="flex-1 mr-4">
-
               <FormField
                 control={reserveForm.control}
                 name="hotel_name"
@@ -198,14 +207,14 @@ export function ReservationForm({
                           onCheckedChange={(checked) => {
                             let result = checked
                               ? field.onChange([
-                                ...(field.value as TourOption[]),
-                                item,
-                              ])
+                                  ...(field.value as TourOption[]),
+                                  item,
+                                ])
                               : field.onChange(
-                                (field.value as TourOption[]).filter(
-                                  (value) => value.name !== item.name
-                                )
-                              );
+                                  (field.value as TourOption[]).filter(
+                                    (value) => value.name !== item.name
+                                  )
+                                );
                             calculateTotalPrice();
                             return result;
                           }}
@@ -225,9 +234,8 @@ export function ReservationForm({
             />
           )}
 
-          {
-            paymentMethods.length > 0
-            && <FormField
+          {paymentMethods.length > 0 && (
+            <FormField
               control={reserveForm.control}
               name="payment_method_id"
               render={({ field }) => (
@@ -249,8 +257,12 @@ export function ReservationForm({
                           </FormLabel>
 
                           <div className="block ml-10">
-                            <Image src={item.logo} alt={item.name_en}
-                              width={130} height={300} />
+                            <Image
+                              src={item.logo}
+                              alt={item.name_en}
+                              width={130}
+                              height={300}
+                            />
                           </div>
                         </FormItem>
                       ))}
@@ -260,21 +272,25 @@ export function ReservationForm({
                 </FormItem>
               )}
             />
-
-          }
+          )}
 
           <div className="text-2xl font-semibold">
             total price : {totalPrice} $
           </div>
         </div>
 
-        <button
+        <Button
           disabled={!isValid}
-          className="disabled:bg-gray-600 md:w-1/3 text-2xl flex justify-center items-center font-medium mx-auto mt-10 px-5 py-2 rounded-md text-white bg-secondary-foreground transition duration-300 ease-in-out hover:bg-secondary"
+          className="mt-6 w-full md:w-1/2 mx-auto"
+          // className="disabled:bg-gray-600 md:w-1/3 text-2xl flex justify-center items-center font-medium mx-auto mt-10 px-5 py-2 rounded-md text-white bg-secondary-foreground transition duration-300 ease-in-out hover:bg-secondary"
           type="submit"
         >
-          {!isSubmitting ? "Continue" : <LoadingSpinner className="size-7 mx-4" />}
-        </button>
+          {!isSubmitting ? (
+            "Continue"
+          ) : (
+            <LoadingSpinner className="size-7 mx-4" />
+          )}
+        </Button>
       </form>
     </Form>
   );

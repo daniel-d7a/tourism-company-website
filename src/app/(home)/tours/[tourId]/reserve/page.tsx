@@ -14,7 +14,9 @@ export default async function Reserve({
   return (
     <>
       <section className="capitalize md:px-24 md:pt-28 pt-24 px-10 mb-10">
-        <h1 className="font-playfair text-4xl text-center my-4">Reservation Form</h1>
+        <h1 className="font-playfair text-4xl text-center my-4">
+          Reservation Form
+        </h1>
         <ReservationForm
           tourOptions={!!options.length ? options : undefined}
           tourPrice={price}
