@@ -4,8 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "localhost",
-        // port: "8000",
+        hostname: "194.163.155.58",
+        port: "8092",
       },
     ],
     domains: ["staging.fawaterk.com"],

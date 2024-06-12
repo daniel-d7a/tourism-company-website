@@ -29,7 +29,7 @@ export function ReviewForm({ tour_id }: { tour_id: number }) {
   const [hoverIndex, setHoverIndex] = useState(0);
 
   const onSubmit = reviewForm.handleSubmit(async (data) => {
-    const res = await addReview({ ...data, tour_id });
+    const res = await addReview({ ...data, tour_id, deleted_at: null });
     if (res.success) toast.success("Thank you for your review");
     else toast.error(res.message);
   });

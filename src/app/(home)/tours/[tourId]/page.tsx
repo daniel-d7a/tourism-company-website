@@ -237,7 +237,7 @@ const Info = ({
         </div>
         <p className="text-sm mt-6">{description}</p>
         <br />
-        <Link href={`${id}/reserve`}>
+        {/* <Link href={`${id}/reserve`}>
           <Button
             className="w-full flex gap-2 items-center group mt-4"
             variant={"outline"}
@@ -245,7 +245,7 @@ const Info = ({
             Reserve
             <FaArrowRight className="mr-0 group-hover:-mr-3 transition-all" />
           </Button>
-        </Link>
+        </Link> */}
       </div>
       <div className="md:w-1/2 w-full mb-6 mx-6 md:my-8">
         <p className="text-xl font-bold mb-4">Tour Details</p>
