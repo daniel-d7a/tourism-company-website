@@ -35,7 +35,8 @@ export function TourCard({ tour }: { tour: Tour }) {
         </div>
         <div className="capitalize flex text-xs md:text-base items-center space-x-1">
           <IoLocationOutline size={18} />
-          <h6>{tour.location.split("\n")[1].split(",")[0]}</h6>
+          {/* <h6>{tour.location.split("\n")[1].split(",")[0]}</h6> */}
+          <h6>{tour.location}</h6>
         </div>
       </div>
       <div className="px-3 py-2 capitalize">

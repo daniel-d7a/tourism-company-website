@@ -8,6 +8,8 @@ import { yesteryear } from "@/lib/fonts";
 export async function TopDestination() {
   const tours = await getTours();
 
+  console.log(tours);
+
   return (
     <>
       <section className="my-10 w-full relative">

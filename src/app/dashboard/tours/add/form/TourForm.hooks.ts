@@ -82,6 +82,7 @@ export const useTourForm = (tourData?: Tour) => {
       toast.success(`Tour ${tourData ? "updated" : "added"} successfully`);
       router.push("/dashboard/tours");
     } else {
+      console.log(result);
       toast.error(result.message);
     }
   });

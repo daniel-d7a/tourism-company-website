@@ -33,7 +33,7 @@ export const LoginForm = () => {
     } else {
       form.setError("root", {
         type: "custom",
-        message: "user name or password is incorect",
+        message: "user name or password is incorrect",
       });
     }
   });

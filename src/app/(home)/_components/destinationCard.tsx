@@ -13,6 +13,7 @@ export function DestinationCard({
   tour: Tour;
 }) {
   const img = media?.[0]?.original_url || placeholderImg;
+  console.log("location", location);
 
   return (
     <div className="shadow-md rounded-md overflow-hidden p-5 relative">
@@ -30,7 +31,8 @@ export function DestinationCard({
         </div>
         <div className="capitalize flex text-base text-gray-600 items-center space-x-1">
           <IoLocationOutline size={18} />
-          <h6>{location.split("\n")[1].split(",")[0]}</h6>
+          {/* <h6>{location.split("\n")[1].split(",")[0]}</h6> */}
+          <h6>{location}</h6>
         </div>
       </div>
       <h5 className="text-2xl mb-2 font-semibold text-secondary-foreground">
@@ -46,7 +48,6 @@ export function DestinationCard({
           <FaArrowRight className="mx-3" />
         </Button>
       </Link>
-
     </div>
   );
 }

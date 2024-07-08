@@ -26,12 +26,9 @@ export function Nav() {
     },
     {
       name: "dashboard",
-      href: "/dashboard/tours",
+      href: "/login",
     },
   ];
-
-  ;
-
 
   return (
     <>
@@ -46,9 +43,13 @@ export function Nav() {
 
           <nav className="hidden md:text-xl md:space-x-3 ml-auto md:flex items-center justify-center">
             {links.map((link) => (
-              <Link className={`hover:border-b-2 border-primary-foreground ${pathname === link.href ? 'border-b-2' : ''
+              <Link
+                className={`hover:border-b-2 border-primary-foreground ${
+                  pathname === link.href ? "border-b-2" : ""
                 }`}
-                href={link.href} key={link.href}>
+                href={link.href}
+                key={link.href}
+              >
                 {link.name}
               </Link>
             ))}
@@ -61,9 +62,7 @@ export function Nav() {
               onClick={() => setNavHidden(!navHidden)}
             />
           </div>
-
         </div>
-
 
         <div
           className={cn(
@@ -82,7 +81,7 @@ export function Nav() {
             </Link>
           ))}
         </div>
-      </header >
+      </header>
     </>
   );
 }
