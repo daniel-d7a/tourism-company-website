@@ -36,7 +36,7 @@ export function SearchForm({ placeholder, className }: { placeholder?: string, c
       placeholder={placeholder ?? "Search..."}
       id="search"
       name="search"
-      className={`md:w-2/3 mx-auto placeholder:px-2 placeholder:text-gray-400 font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2 focus:bg-transparent focus:border-black text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out ${className}`}
+      className={`md:w-2/3 mx-auto placeholder:px-2 placeholder:text-white font-medium w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:px-2  focus:border-black text-base outline-none text-black leading-8 transition-colors duration-200 ease-in-out ${className}`}
     />
   );
 }

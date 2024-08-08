@@ -30,7 +30,6 @@ export async function getSingleTour(id: number) {
 
 export async function addTour(data: FormData) {
   const responseData = await http.postRequest(`${endpoint}`, data);
-
   if (responseData.success) {
     revalidatePath("/dashboard/tours");
   }

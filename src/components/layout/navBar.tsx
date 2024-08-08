@@ -24,10 +24,10 @@ export function Nav() {
       name: "About",
       href: "/about",
     },
-    {
-      name: "dashboard",
-      href: "/login",
-    },
+    // {
+    //   name: "dashboard",
+    //   href: "/login",
+    // },
   ];
 
   return (
@@ -66,7 +66,7 @@ export function Nav() {
 
         <div
           className={cn(
-            "w-full z-40 divide-y-4 p-3 absolute top-16 left-0 rounded-xl transition-all flex flex-col bg-gray-300 space-y-2 justify-center",
+            "md:hidden w-full z-40 divide-y-4 p-3 absolute top-16 left-0 rounded-xl transition-all flex flex-col bg-gray-300 space-y-2 justify-center",
             navHidden ? "-translate-y-96" : "-translate-y-0"
           )}
         >

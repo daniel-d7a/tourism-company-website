@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui";
-import { fontSans, playfairDisplay, lato } from "@/lib/fonts";
+import { fontSans, playfairDisplay, lato, lora } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -30,7 +30,8 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           playfairDisplay.variable,
-          lato.variable
+          lato.variable,
+          lora.variable
         )}
       >
         {children}

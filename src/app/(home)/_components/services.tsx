@@ -38,7 +38,7 @@ export function Services() {
 
   return (
     <section className="mt-20 flex-col items-center justify-center">
-      <p className="text-primary-foreground text-center text-sm uppercase font-semibold">category</p>
+      <p className="text-secondary text-center text-base uppercase font-semibold">Services</p>
       <h2 className="text-center text-4xl font-semibold capitalize my-5">we offer the best services</h2>
 
       <div className="w-5/6 mx-auto md:flex my-5">

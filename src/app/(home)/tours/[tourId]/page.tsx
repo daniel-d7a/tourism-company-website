@@ -140,7 +140,7 @@ const Reviews = ({
 }) => {
   return (
     <>
-      {reviews.length === 0 && cookies().has(`reviewe/tour/${tourId}`) && (
+      {reviews?.length === 0 && cookies().has(`reviewe/tour/${tourId}`) && (
         <div className="h-40" />
       )}
       <div className="px-8 py-10">
@@ -186,7 +186,7 @@ const Reviews = ({
 const Media = ({ media }: { media: TourMedia[] }) => {
   return (
     <>
-      {media.length === 0 && <div className="h-40" />}
+      {media?.length === 0 && <div className="h-40" />}
       <div className="px-8 py-10 grid-cols-1 md:grid-cols-3 grid gap-4">
         {
           // Array(9)
@@ -253,27 +253,44 @@ const Info = ({
         <br />
         <Detail name={"duration"} value={duration} />
         <br />
-        <div className="grid grid-cols-3">
-          <p className="capitalize text-primary-foreground font-semibold">
-            Includes :
-          </p>
-          <div className="col-span-2 grid grid-cols-2 gap-y-4">
-            {includes.map((i) => (
-              <p key={i} className="flex items-center gap-2">
-                <FaRegCheckCircle size={14} className="mt-1" />
-                {i}
-              </p>
-            ))}
+        {
+          includes?.length &&
+          <div className="grid grid-cols-3">
+            <p className="capitalize text-primary-foreground font-semibold">
+              Includes :
+            </p>
+            <div className="col-span-2 grid grid-cols-2 gap-y-4">
+              {includes?.map((i) => (
+                <p key={i} className="flex items-center gap-2">
+                  <FaRegCheckCircle size={14} className="mt-1" />
+                  {i}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
+        }
         <br />
-
+        {
+          excludes?.length && <div className="grid grid-cols-3 ">
+            <p className="capitalize text-primary-foreground font-semibold">
+              Excludes :
+            </p>
+            <div className="col-span-2 grid grid-cols-2 gap-y-4">
+              {excludes?.map((i) => (
+                <p key={i} className="flex items-center gap-2">
+                  <IoMdCloseCircleOutline size={16} className="mt-1" />
+                  {i}
+                </p>
+              ))}
+            </div>
+          </div>
+        }
         <div className="grid grid-cols-3 ">
           <p className="capitalize text-primary-foreground font-semibold">
             Excludes :
           </p>
           <div className="col-span-2 grid grid-cols-2 gap-y-4">
-            {excludes.map((i) => (
+            {excludes?.map((i) => (
               <p key={i} className="flex items-center gap-2">
                 <IoMdCloseCircleOutline size={16} className="mt-1" />
                 {i}

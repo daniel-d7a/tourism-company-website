@@ -4,9 +4,9 @@ import { getTours } from "@/lib/actions/tour.actions";
 import { SearchForm } from "./_components/searchForm";
 import { PageParams } from "@/models";
 import Image from "next/image";
-import img from "@/assets/img.png";
+import img from "@/assets/background.jpg";
 import { cn } from "@/lib/utils";
-import { yesteryear } from "@/lib/fonts";
+import { lora } from "@/lib/fonts";
 
 export default async function Tours({
   searchParams: { page = 1, q = "" },
@@ -33,7 +33,7 @@ export default async function Tours({
             <h2
               className={cn(
                 "text-3xl md:text-5xl font-semibold my-3 text-center capitalize",
-                yesteryear.className
+                lora.className
               )}
             >
               travel with us
@@ -46,7 +46,7 @@ export default async function Tours({
           alt="img"
           width={800}
           height={200}
-          className="w-full min-h-[15rem] md:min-h-[23rem]"
+          className="object-cover w-full h-[20rem] md:h-[23rem]"
         />
       </div>
 

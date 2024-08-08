@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Form,
   FormControl,
@@ -28,11 +27,13 @@ export const TourForm = ({ tourData }: { tourData?: Tour }) => {
       "image/*": [".jpeg", ".png"],
     },
     onDrop: async (acceptedFiles: File[]) => {
+      console.log(acceptedFiles);
       if (tourData) {
         for (const file of acceptedFiles) {
           const formData = new FormData();
           formData.append("media", file);
-          await addTourImage(tourData.id, formData);
+          const res = await addTourImage(tourData.id, formData);
+          console.log(res);
         }
       }
       media.append(

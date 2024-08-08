@@ -3,6 +3,7 @@ import {
   Playfair_Display,
   Lato,
   Yesteryear,
+  Lora,
 } from "next/font/google";
 
 export const fontSans = FontSans({
@@ -24,4 +25,10 @@ export const yesteryear = Yesteryear({
   subsets: ["latin"],
   weight: "400",
   variable: "--yesteryear",
+});
+
+export const lora = Lora({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--lora",
 });

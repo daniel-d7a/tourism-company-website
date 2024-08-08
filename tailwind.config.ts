@@ -77,6 +77,7 @@ const config = {
       fontFamily: {
         playfair: ["var(--playfair-display)"],
         lato: ["var(--lato)"],
+        lora: ["var(--lora)"],
       },
     },
   },

@@ -13,12 +13,11 @@ export function DestinationCard({
   tour: Tour;
 }) {
   const img = media?.[0]?.original_url || placeholderImg;
-  console.log("location", location);
 
   return (
-    <div className="shadow-md rounded-md overflow-hidden p-5 relative">
+    <div className="shadow-md rounded-md overflow-hidden p-5 relative  hover:scale-105 transition duration-500">
       <Image
-        className="lg:h-48 md:h-40 w-full object-cover object-center hover:scale-105 transition duration-500 cursor-pointer"
+        className="lg:h-48 md:h-40 w-full object-cover object-center cursor-pointer"
         src={img}
         alt={name}
         width={200}
